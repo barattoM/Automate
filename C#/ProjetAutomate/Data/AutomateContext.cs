@@ -18,13 +18,13 @@ namespace ProjetAutomate.Data
         {
         }
 
-        public virtual DbSet<Afpa_Anomalie> AfpaAnomalies { get; set; }
-        public virtual DbSet<Afpa_Couleur> AfpaCouleurs { get; set; }
-        public virtual DbSet<Afpa_Erreur> AfpaErreurs { get; set; }
-        public virtual DbSet<Afpa_Lumiere> AfpaLumieres { get; set; }
-        public virtual DbSet<Afpa_Seuil> AfpaSeuils { get; set; }
-        public virtual DbSet<Afpa_Son> AfpaSons { get; set; }
-        public virtual DbSet<Afpa_Temperature> AfpaTemperatures { get; set; }
+        public virtual DbSet<Afpa_Anomalie> Afpa_Anomalies { get; set; }
+        public virtual DbSet<Afpa_Couleur> Afpa_Couleurs { get; set; }
+        public virtual DbSet<Afpa_Erreur> Afpa_Erreurs { get; set; }
+        public virtual DbSet<Afpa_Lumiere> Afpa_Lumieres { get; set; }
+        public virtual DbSet<Afpa_Seuil> Afpa_Seuils { get; set; }
+        public virtual DbSet<Afpa_Son> Afpa_Sons { get; set; }
+        public virtual DbSet<Afpa_Temperature> Afpa_Temperatures { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
