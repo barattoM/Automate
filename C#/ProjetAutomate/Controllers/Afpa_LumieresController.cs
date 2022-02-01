@@ -34,7 +34,7 @@ namespace ProjetAutomate.Controllers
 
         //GET api/Afpa_Lumieres/{i}
         [HttpGet("{id}", Name = "GetNomModelById")]
-        public ActionResult<Afpa_LumieresDTOOut> GetNomModelById(int id)
+        public ActionResult<Afpa_LumieresDTOOut> GetAfpa_LumiereById(int id)
         {
             Afpa_Lumiere commandItem = _service.GetAfpa_LumiereById(id);
             if (commandItem != null)
@@ -46,16 +46,16 @@ namespace ProjetAutomate.Controllers
 
         //POST api/Afpa_Lumieres
         [HttpPost]
-        public ActionResult<Afpa_LumieresDTOIn> CreateNomModel(Afpa_LumieresDTOIn objIn)
+        public ActionResult<Afpa_LumieresDTOIn> CreateAfpa_Lumiere(Afpa_LumieresDTOIn objIn)
         {
             Afpa_Lumiere obj = _mapper.Map<Afpa_Lumiere>(objIn);
             _service.AddAfpa_Lumiere(obj);
-            return CreatedAtRoute(nameof(GetNomModelById), new { Id = obj.IdLumiere }, obj);
+            return CreatedAtRoute(nameof(GetAfpa_LumiereById), new { Id = obj.IdLumiere }, obj);
         }
 
         //POST api/Afpa_Lumieres/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateNomModel(int id, Afpa_LumieresDTOIn obj)
+        public ActionResult UpdateAfpa_Lumiere(int id, Afpa_LumieresDTOIn obj)
         {
             Afpa_Lumiere objFromRepo = _service.GetAfpa_LumiereById(id);
             if (objFromRepo == null)
@@ -69,7 +69,7 @@ namespace ProjetAutomate.Controllers
 
         //DELETE api/Afpa_Lumieres/{id}
         [HttpDelete("{id}")]
-        public ActionResult DeleteNomModel(int id)
+        public ActionResult DeleteAfpa_Lumiere(int id)
         {
             Afpa_Lumiere obj = _service.GetAfpa_LumiereById(id);
             if (obj == null)
