@@ -9,6 +9,6 @@ namespace ProjetAutomate.Data.Models
     {
         public int IdTemperature { get; set; }
         public decimal? ValeurTemperature { get; set; }
-        public DateTime? DateTempretature { get; set; }
+        public DateTime? DateTemperature { get; set; }
     }
 }
