@@ -8,8 +8,8 @@ Use Automate;
 
 CREATE TABLE Afpa_Seuils(
    IdSeuil INT AUTO_INCREMENT PRIMARY KEY,
-   SeuilBas INT,
-   SeuilHaut INT,
+   SeuilBas FLOAT,
+   SeuilHaut FLOAT,
    DateSeuil DATE,
    Temps INT,
    Nature INT
@@ -23,7 +23,7 @@ CREATE TABLE Afpa_Seuils(
 
 CREATE TABLE Afpa_Temperatures(
    IdTemperature INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurTemperature DECIMAL(3,1),
+   ValeurTemperature FLOAT,
    DateTemperature DATETIME
 )ENGINE=InnoDB;
 
@@ -35,7 +35,7 @@ CREATE TABLE Afpa_Temperatures(
 
 CREATE TABLE Afpa_Sons(
    IdSon INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurSon INT,
+   ValeurSon FLOAT,
    DateSon DATETIME
 )ENGINE=InnoDB;
 
@@ -47,7 +47,7 @@ CREATE TABLE Afpa_Sons(
 
 CREATE TABLE Afpa_Lumieres(
    IdLumiere INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurLumiere INT,
+   ValeurLumiere FLOAT,
    DateLumiere DATETIME
 )ENGINE=InnoDB;
 
