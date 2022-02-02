@@ -30,6 +30,10 @@ namespace Automate
         short temp;
         short lum;
         int tempsAcquisition=5000; //En ms
+        float[] mesureTemperature = new float[20];
+        float[] mesureSon = new float[20];
+        float[] mesureLumiere = new float[20];
+
 
         public MainWindow()
         {
@@ -70,7 +74,7 @@ namespace Automate
         public void AcquisitionTemperature(object sender, EventArgs e)
         {
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_TEMP, out temp, out overflow);
-            Trace.WriteLine(Convert.ToString(temp));  
+            Trace.WriteLine(Convert.ToString(temp*0.088));  
         }
 
         public void AcquisitionLumiere(object sender, EventArgs e)
