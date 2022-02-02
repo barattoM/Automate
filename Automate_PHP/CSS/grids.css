@@ -41,6 +41,33 @@
 	grid-column:1/9;
 }
 
+
+.grid-col-9 {
+	margin-left: 20em;
+	margin-right: 20em;
+	display : grid;
+	grid-template-columns : 0.2fr 0.1fr 0.5fr 0.2fr 0.5fr 0.1fr 0.3fr 1fr 0.8fr;
+	grid-gap: 2em;
+}
+
+.grid-columns-span-9 { 
+	grid-column:1/10;
+}
+
+
+.grid-col-3 {
+	margin-left: 20em;
+	margin-right: 20em;
+	display : grid;
+	grid-template-columns :  1fr 1fr 1fr;
+	border: 1px solid black;
+	
+}
+
+.grid-columns-span-3 { 
+	grid-column:1/4;
+}
+
 .gridListe div,button,a {
 	justify-content: center;
 	align-items: center;
