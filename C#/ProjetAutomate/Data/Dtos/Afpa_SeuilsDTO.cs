@@ -10,11 +10,13 @@ namespace ProjetAutomate.Data.Dtos
         public int? SeuilBas { get; set; }
         public int? SeuilHaut { get; set; }
         public DateTime? DateSeuil { get; set; }
+        public int Temps { get; set; }
     }
     public class Afpa_SeuilsDTOOut
     {
         public int? SeuilBas { get; set; }
         public int? SeuilHaut { get; set; }
         public DateTime? DateSeuil { get; set; }
+        public int Temps { get; set; }
     }
 }

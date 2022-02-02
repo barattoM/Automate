@@ -53,6 +53,8 @@ namespace ProjetAutomate.Data
                     .HasMaxLength(50)
                     .HasComment("type : Temperature/Son/Lumiere");
 
+                entity.Property(e => e.NbDeclasses).HasColumnType("int(11)");
+
                 entity.HasOne(d => d.Erreur)
                     .WithMany(p => p.AfpaAnomalies)
                     .HasForeignKey(d => d.IdErreur)
@@ -116,6 +118,8 @@ namespace ProjetAutomate.Data
                 entity.Property(e => e.SeuilBas).HasColumnType("int(11)");
 
                 entity.Property(e => e.SeuilHaut).HasColumnType("int(11)");
+
+                entity.Property(e => e.Temps).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Afpa_Son>(entity =>
@@ -140,6 +144,20 @@ namespace ProjetAutomate.Data
                 entity.Property(e => e.IdTemperature).HasColumnType("int(11)");
 
                 entity.Property(e => e.ValeurTemperature).HasColumnType("decimal(3,1)");
+            });
+
+            modelBuilder.Entity<Afpa_Cadence>(entity =>
+            {
+                entity.HasKey(e => e.IdCadence)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("afpa_cadences");
+
+                entity.Property(e => e.IdCadence).HasColumnType("int(11)");
+
+                entity.Property(e => e.NbProduit).HasColumnType("int(11)");
+
+                entity.Property(e => e.DateCadence).HasColumnType("date");
             });
 
             OnModelCreatingPartial(modelBuilder);
