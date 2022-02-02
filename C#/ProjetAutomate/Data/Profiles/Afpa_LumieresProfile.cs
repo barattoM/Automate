@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProjetAutomate.Data.Profiles
 {
-    public class Afpa_LumiereProfile:Profile
+    public class Afpa_LumieresProfile:Profile
     {
-        public Afpa_LumiereProfile()
+        public Afpa_LumieresProfile()
         {
             CreateMap<Afpa_Lumiere,Afpa_LumieresDTOIn>();
             CreateMap<Afpa_LumieresDTOIn, Afpa_Lumiere>();

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProjetAutomate.Data.Profiles
 {
-    public class Afpa_CouleurProfile:Profile
+    public class Afpa_CouleursProfile:Profile
     {
-        public Afpa_CouleurProfile()
+        public Afpa_CouleursProfile()
         {
             CreateMap<Afpa_Couleur, Afpa_CouleursDTOIn>();
             CreateMap<Afpa_CouleursDTOIn, Afpa_Couleur>();
