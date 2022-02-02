@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ProjetAutomate.Data;
+using ProjetAutomate.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,15 @@ namespace ProjetAutomate
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AutomateContext>(options => options.UseMySQL(Configuration.GetConnectionString("Default")));
+            services.AddTransient<Afpa_AnomaliesServices>();
+            services.AddTransient<Afpa_CadencesServices>();
+            services.AddTransient<Afpa_CouleursServices>();
+            services.AddTransient<Afpa_ErreursServices>();
+            services.AddTransient<Afpa_LumieresServices>();
+            services.AddTransient<Afpa_SeuilsServices>();
+            services.AddTransient<Afpa_SonsServices>();
+            services.AddTransient<Afpa_TemperaturesServices>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

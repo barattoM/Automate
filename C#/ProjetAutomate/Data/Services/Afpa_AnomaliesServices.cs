@@ -1,4 +1,5 @@
-﻿using ProjetAutomate.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjetAutomate.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,12 +39,12 @@ namespace ProjetAutomate.Data.Services
 
         public IEnumerable<Afpa_Anomalie> GetAllAfpa_Anomalies()
         {
-            return _context.Afpa_Anomalies.ToList();
+            return _context.Afpa_Anomalies.Include("Erreur").ToList();
         }
 
         public Afpa_Anomalie GetAfpa_AnomalieById(int id)
         {
-            return _context.Afpa_Anomalies.FirstOrDefault(obj => obj.IdAnomalie == id);
+            return _context.Afpa_Anomalies.Include("Erreur").FirstOrDefault(obj => obj.IdAnomalie == id);
         }
 
         public void UpdateAfpa_Anomalie(Afpa_Anomalie obj)
