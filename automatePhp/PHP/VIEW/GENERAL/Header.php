@@ -18,6 +18,10 @@
         </div>
         <div class="demi">
 
-       <div class="center"> <i class="fas fa-bars fa-3x "></i></div>
+        <div id="menu-burger">
+	<div class="bar1"></div>
+	<div class="bar2"></div>
+	<div class="bar3"></div>
+</div>
         </div>
     </header>
