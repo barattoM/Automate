@@ -17,11 +17,15 @@
 
         </div>
         <div class="demi">
-
-        <div id="menu-burger">
-	<div class="bar1"></div>
-	<div class="bar2"></div>
-	<div class="bar3"></div>
-</div>
+        <?php
+            //Si utilisateur est connecté affichage du menu.
+            if (isset($_SESSION['utilisateur'])) {
+                echo '<div id="menu-burger">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>';
+            }
+        ?>
         </div>
     </header>
