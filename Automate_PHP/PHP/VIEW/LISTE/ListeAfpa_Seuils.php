@@ -18,11 +18,12 @@ echo '<div class="caseListe grid-columns-span-8">
 <div></div>
 </div>';
 
+echo '<div class="caseListe labelListe">Nature</div>';
 echo '<div class="caseListe labelListe">SeuilBas</div>';
 echo '<div class="caseListe labelListe">SeuilHaut</div>';
-echo '<div class="caseListe labelListe">DateSeuil</div>';
 echo '<div class="caseListe labelListe">Temps</div>';
-echo '<div class="caseListe labelListe">Nature</div>';
+echo '<div class="caseListe labelListe">DateSeuil</div>';
+
 
 //Remplissage de div vide pour la structure de la grid
 echo '<div class="caseListe"></div>';
@@ -32,11 +33,11 @@ echo '<div class="caseListe"></div>';
 // Affichage des ennregistrements de la base de données
 foreach($objets as $unObjet)
 {
+echo '<div class="caseListe donneeListe">'.$unObjet->getNature().'</div>';
 echo '<div class="caseListe donneeListe">'.$unObjet->getSeuilBas().'</div>';
 echo '<div class="caseListe donneeListe">'.$unObjet->getSeuilHaut().'</div>';
-echo '<div class="caseListe donneeListe">'.$unObjet->getDateSeuil().'</div>';
 echo '<div class="caseListe donneeListe">'.$unObjet->getTemps().'</div>';
-echo '<div class="caseListe donneeListe">'.$unObjet->getNature().'</div>';
+echo '<div class="caseListe donneeListe">'.$unObjet->getDateSeuil().'</div>';
 echo '<div class="caseListe"> <a href="index.php?page=FormAfpa_Seuils&mode=Afficher&id='.$unObjet->getIdSeuil().'"><i class="fas fa-file-contract"></i></a></div>';
                                                     
 echo '<div class="caseListe"> <a href="index.php?page=FormAfpa_Seuils&mode=Modifier&id='.$unObjet->getIdSeuil().'"><i class="fas fa-pen"></i></a></div>';
