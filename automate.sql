@@ -11,7 +11,8 @@ CREATE TABLE Afpa_Seuils(
    SeuilBas INT,
    SeuilHaut INT,
    DateSeuil DATE,
-   Temps INT
+   Temps INT,
+   Nature INT
 )ENGINE=InnoDB;
 
 
@@ -144,10 +145,10 @@ INSERT INTO `afpa_lumieres` (`IdLumiere`, `ValeurLumiere`, `DateLumiere`) VALUES
 (2, 120, '2022-02-01 14:08:16');
 
 
-INSERT INTO `afpa_seuils` (`IdSeuil`, `SeuilBas`, `SeuilHaut`, `DateSeuil`, `Temps`) VALUES
-(1, 10, 30, '2022-02-01', 1),
-(2, 40, 150, '2022-02-02', 2),
-(3, 100, 1000, '2022-02-25', 1);
+INSERT INTO `afpa_seuils` (`IdSeuil`, `SeuilBas`, `SeuilHaut`, `DateSeuil`, `Temps`,`Nature`) VALUES
+(1, 10, 30, '2022-02-01', 1,3),
+(2, 40, 150, '2022-02-02', 2,2),
+(3, 100, 1000, '2022-02-25', 1,1);
 
 INSERT INTO `afpa_sons` (`IdSon`, `ValeurSon`, `DateSon`) VALUES
 (1, 120, '2022-02-01 13:58:44'),
