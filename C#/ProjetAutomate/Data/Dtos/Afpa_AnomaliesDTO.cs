@@ -17,6 +17,6 @@ namespace ProjetAutomate.Data.Dtos
     {
         public DateTime? DateAnomalie { get; set; }
         public string TypeAnomalie { get; set; }
-        public virtual Afpa_Erreur Erreur { get; set; }
+        public string Erreur { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace ProjetAutomate.Controllers
         }
 
         //GET api/Afpa_Couleurs/{i}
-        [HttpGet("{id}", Name = "GetNomModelById")]
+        [HttpGet("{id}", Name = "GetAfpa_CouleurById")]
         public ActionResult<Afpa_CouleursDTOOut> GetAfpa_CouleurById(int id)
         {
             Afpa_Couleur commandItem = _service.GetAfpa_CouleurById(id);

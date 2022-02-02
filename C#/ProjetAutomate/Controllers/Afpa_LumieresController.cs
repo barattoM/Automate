@@ -33,7 +33,7 @@ namespace ProjetAutomate.Controllers
         }
 
         //GET api/Afpa_Lumieres/{i}
-        [HttpGet("{id}", Name = "GetNomModelById")]
+        [HttpGet("{id}", Name = "GetAfpa_LumiereById")]
         public ActionResult<Afpa_LumieresDTOOut> GetAfpa_LumiereById(int id)
         {
             Afpa_Lumiere commandItem = _service.GetAfpa_LumiereById(id);
