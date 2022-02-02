@@ -25,6 +25,7 @@ namespace ProjetAutomate.Data
         public virtual DbSet<Afpa_Seuil> Afpa_Seuils { get; set; }
         public virtual DbSet<Afpa_Son> Afpa_Sons { get; set; }
         public virtual DbSet<Afpa_Temperature> Afpa_Temperatures { get; set; }
+        public virtual DbSet<Afpa_Cadence> Afpa_Cadences { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -110,23 +111,23 @@ namespace ProjetAutomate.Data
                 entity.Property(e => e.ValeurLumiere).HasColumnType("int(11)");
             });
 
-            modelBuilder.Entity<Afpa_Objectif>(entity =>
-            {
-                entity.HasKey(e => e.IdObjectif)
-                    .HasName("PRIMARY");
+            //modelBuilder.Entity<Afpa_Objectif>(entity =>
+            //{
+            //    entity.HasKey(e => e.IdObjectif)
+            //        .HasName("PRIMARY");
 
-                entity.ToTable("afpa_objectifs");
+            //    entity.ToTable("afpa_objectifs");
 
-                entity.Property(e => e.IdObjectif).HasColumnType("int(11)");
+            //    entity.Property(e => e.IdObjectif).HasColumnType("int(11)");
 
-                entity.Property(e => e.MaxNombreArretDecibel).HasColumnType("int(11)");
+            //    entity.Property(e => e.MaxNombreArretDecibel).HasColumnType("int(11)");
 
-                entity.Property(e => e.MaxNombreArretTemperature).HasColumnType("int(11)");
+            //    entity.Property(e => e.MaxNombreArretTemperature).HasColumnType("int(11)");
 
-                entity.Property(e => e.MaxPourcentDeclasses).HasColumnType("int(11)");
+            //    entity.Property(e => e.MaxPourcentDeclasses).HasColumnType("int(11)");
 
-                entity.Property(e => e.Rendement).HasColumnType("int(11)");
-            });
+            //    entity.Property(e => e.Rendement).HasColumnType("int(11)");
+            //});
 
             modelBuilder.Entity<Afpa_Seuil>(entity =>
             {

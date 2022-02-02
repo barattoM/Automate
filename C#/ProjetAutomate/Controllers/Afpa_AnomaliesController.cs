@@ -33,7 +33,7 @@ namespace ProjetAutomate.Controllers
         }
 
         //GET api/Afpa_Anomalies/{i}
-        [HttpGet("{id}", Name = "GetNomModelById")]
+        [HttpGet("{id}", Name = "GetAfpa_AnomalieById")]
         public ActionResult<Afpa_AnomaliesDTOOut> GetAfpa_AnomalieById(int id)
         {
             Afpa_Anomalie commandItem = _service.GetAfpa_AnomalieById(id);

@@ -10,6 +10,8 @@ using static ProjetAutomate.Data.Dtos.Afpa_SonsDTO;
 
 namespace ProjetAutomate.Controllers
 {
+    [Route("api/[Controller]")]
+    [ApiController]
     public class Afpa_SonsController : ControllerBase
     {
 

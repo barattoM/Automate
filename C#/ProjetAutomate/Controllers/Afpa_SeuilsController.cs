@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace ProjetAutomate.Controllers
 {
+    [Route("api/[Controller]")]
+    [ApiController]
     public class Afpa_SeuilsController : ControllerBase
     {
 
