@@ -10,14 +10,14 @@ namespace ProjetAutomate.Data.Dtos
 
         public class Afpa_SonsDTOIn
         {
-            public int? ValeurSon { get; set; }
+            public float? ValeurSon { get; set; }
             public DateTime? DateSon { get; set; }
 
         }
 
         public class Afpa_SonsDTOOut
         {
-            public int? ValeurSon { get; set; }
+            public float? ValeurSon { get; set; }
             public DateTime? DateSon { get; set; }
 
         }

@@ -8,8 +8,8 @@ Use Automate;
 
 CREATE TABLE Afpa_Seuils(
    IdSeuil INT AUTO_INCREMENT PRIMARY KEY,
-   SeuilBas INT,
-   SeuilHaut INT,
+   SeuilBas FLOAT,
+   SeuilHaut FLOAT,
    DateSeuil DATE,
    Temps INT,
    Nature INT
@@ -23,7 +23,7 @@ CREATE TABLE Afpa_Seuils(
 
 CREATE TABLE Afpa_Temperatures(
    IdTemperature INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurTemperature DECIMAL(3,1),
+   ValeurTemperature FLOAT,
    DateTemperature DATETIME
 )ENGINE=InnoDB;
 
@@ -35,7 +35,7 @@ CREATE TABLE Afpa_Temperatures(
 
 CREATE TABLE Afpa_Sons(
    IdSon INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurSon INT,
+   ValeurSon FLOAT,
    DateSon DATETIME
 )ENGINE=InnoDB;
 
@@ -47,7 +47,7 @@ CREATE TABLE Afpa_Sons(
 
 CREATE TABLE Afpa_Lumieres(
    IdLumiere INT AUTO_INCREMENT PRIMARY KEY,
-   ValeurLumiere INT,
+   ValeurLumiere FLOAT,
    DateLumiere DATETIME
 )ENGINE=InnoDB;
 
@@ -85,7 +85,8 @@ CREATE TABLE Afpa_Objectifs(
    Rendement INT,
    MaxNombreArretTemperature INT,
    MaxNombreArretDecibel INT,
-   MaxPourcentDeclasses INT
+   MaxPourcentDeclasses INT,
+   Date DATETIME
 )ENGINE=InnoDB;
 
 --
@@ -171,3 +172,38 @@ INSERT INTO `afpa_cadences` (`IdCadence`, `NbProduit`, `DateCadence`) VALUES
 INSERT INTO `afpa_anomalies` (`IdAnomalie`, `DateAnomalie`, `TypeAnomalie`,`NbDeclasses`, `IdErreur`) VALUES
 (1, '2022-02-01 14:20:30', 'Lumière ',10, 3),
 (2, '2022-02-01 14:21:52', 'Son',10, 2);
+
+CREATE TABLE IF NOT EXISTS Afpa_Utilisateurs (
+idUtilisateur int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom varchar(50) NOT NULL,
+prenom varchar(50) NOT NULL,
+adresseMail varchar(50) UNIQUE NOT NULL,
+motDePasse varchar(50) NOT NULL,
+role int(11) NOT NULL COMMENT '2 Admin 1 User'
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+CREATE TABLE IF NOT EXISTS Afpa_Textes (
+idTexte int (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+codeTexte varchar (50) NOT NULL,
+fr LONGTEXT NOT NULL,
+en LONGTEXT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+INSERT INTO `Afpa_Textes` (`idTexte`, `codeTexte`, `FR`, `EN`) VALUES (NULL, 'Bonjour', 'Bonjour', 'Hello') ,  
+(NULL, 'Connexion', 'Connexion', 'Log in') ,
+(NULL, 'Deconnexion', 'Deconnexion', 'Log out') ,
+(NULL, 'Accueil', 'Accueil', 'Home') ,
+(NULL, 'AdresseEmail', 'Adresse email', 'Email address') , 
+(NULL, 'Mdp', 'Mot de passe', 'Password') ,
+(NULL, 'Inscription', 'Inscription', 'Registration') , 
+(NULL, 'Nom', 'Nom', 'Surname'), 
+(NULL, 'Prenom', 'Prenom', 'Name'), 
+(NULL, 'InfoMdpLegend', 'Veuillez saisir au moins', 'Please enter at least'), 
+(NULL, 'UneMajuscule', '1 majuscule', '1 uppercase'), 
+(NULL, 'UneMinuscule', '1 minuscule', '1 lowercase'), 
+(NULL, 'UnChiffre', '1 chiffre', '1 number'), 
+(NULL, 'UnCaractereSpecial', '1 caractère spécial ( ! @ & # * ^ $ % +)', '1 special character ( ! @ & # * ^ $ % +)'), 
+(NULL, 'MinimumCaractere', '8 caractères', '8 character'), 
+(NULL, 'Confirmation', 'Confirmation', 'Confirmation'), 
+(NULL, 'Reset', 'Réinitialisation', 'Reset'), 
+(NULL, 'Envoyer', 'Envoyer', 'Send'); 
