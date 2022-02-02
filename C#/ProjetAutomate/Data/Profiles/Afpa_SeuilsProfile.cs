@@ -14,7 +14,7 @@ namespace ProjetAutomate.Data.Profiles
         {
             CreateMap<Afpa_Seuil, Afpa_SeuilsDTOIn>();
             CreateMap<Afpa_SeuilsDTOIn ,Afpa_Seuil>();
-            CreateMap<Afpa_Seuil, Afpa_SeuilsDTOOut>();
+            CreateMap<Afpa_Seuil, Afpa_SeuilsDTOOut>().ForMember(x => x.DateSeuil, y => y.MapFrom(z => ((DateTime)z.DateSeuil).ToString("dd-MM-yyyy")));
             CreateMap<Afpa_SeuilsDTOOut, Afpa_Seuil>();
         }
     }
