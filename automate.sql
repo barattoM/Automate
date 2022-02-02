@@ -84,7 +84,8 @@ CREATE TABLE Afpa_Objectifs(
    Rendement INT,
    MaxNombreArretTemperature INT,
    MaxNombreArretDecibel INT,
-   MaxPourcentDeclasses INT
+   MaxPourcentDeclasses INT,
+   Date DATETIME
 )ENGINE=InnoDB;
 
 --
