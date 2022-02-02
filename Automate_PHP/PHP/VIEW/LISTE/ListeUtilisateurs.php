@@ -7,7 +7,7 @@
  echo '<div>';
  
 
-$objets = UtilisateursManager::getList();
+$objets = Afpa_UtilisateursManager::getList();
 //Création du template de la grid
 echo '<div class="grid-col-8 gridListe">';
 

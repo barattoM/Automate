@@ -1,6 +1,6 @@
 <?php
 
-class Utilisateurs 
+class Afpa_Utilisateurs 
 {
 
 	/*****************Attributs***************** */

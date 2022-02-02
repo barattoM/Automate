@@ -37,7 +37,7 @@ function crypte($mot)
 
 function texte($codeTexte)
 {
-	$retour=TextesManager::findByCodes($_SESSION['lang'], $codeTexte);
+	$retour=Afpa_TextesManager::findByCodes($_SESSION['lang'], $codeTexte);
 	if ($retour==false) return $codeTexte;
 	return $retour;
 }
