@@ -89,3 +89,10 @@ footer{
 	from {Right:0%;}
 	to {Right:-30%;}
 }
+
+.border{
+    border: solid var(--linkColor) 1px;
+}
+.borderRadiuce{
+    border-radius: 5vh;
+}
