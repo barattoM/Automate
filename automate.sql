@@ -81,21 +81,21 @@ CREATE TABLE Afpa_Erreurs(
 
 CREATE TABLE Afpa_Objectifs(
    IdObjectif INT AUTO_INCREMENT PRIMARY KEY,
-   Randement INT,
+   Rendement INT,
    MaxNombreArretTemperature INT,
    MaxNombreArretDecibel INT,
    MaxPourcentDeclasses INT
 )ENGINE=InnoDB;
 
 --
--- Table  'Afpa_Cadances'
+-- Table  'Afpa_Cadences'
 --
 
 
-CREATE TABLE Afpa_Cadances(
-   IdCadance INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Afpa_Cadences(
+   IdCadence INT AUTO_INCREMENT PRIMARY KEY,
    NbProduit INT,
-   DateCadance DATETIME
+   DateCadence DATETIME
 )ENGINE=InnoDB;
 
 
@@ -108,7 +108,7 @@ CREATE TABLE Afpa_Anomalies(
    IdAnomalie INT AUTO_INCREMENT PRIMARY KEY,
    DateAnomalie DATETIME,
    TypeAnomalie VARCHAR(50),
-   NbDelaisses INT,
+   NbDeclasses INT,
    IdErreur INT NOT NULL
   
 )ENGINE=InnoDB;
@@ -158,11 +158,11 @@ INSERT INTO `afpa_temperatures` (`IdTemperature`, `ValeurTemperature`, `DateTemp
 (2, '-3.0', '2022-02-01 14:57:57');
 
 
-INSERT INTO `afpa_objectifs` (`IdObjectif`, `Randement`, `MaxNombreArretTemperature`,`MaxNombreArretDecibel`,`MaxPourcentDeclasses`) VALUES
+INSERT INTO `afpa_objectifs` (`IdObjectif`, `Rendement`, `MaxNombreArretTemperature`,`MaxNombreArretDecibel`,`MaxPourcentDeclasses`) VALUES
 (1, 100, 4,5,60 ),
 (2, 200, 5,4,70);
 
-INSERT INTO `afpa_cadances` (`IdCadance`, `NbProduit`, `DateCadance`) VALUES
+INSERT INTO `afpa_cadences` (`IdCadence`, `NbProduit`, `DateCadence`) VALUES
 (1, 100, '2022-02-01 14:20:30'),
 (2, 150, '2022-02-01 14:22:30');
 

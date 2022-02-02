@@ -43,23 +43,33 @@ namespace ProjetAutomate.Data
 
                 entity.ToTable("afpa_anomalies");
 
-                entity.HasIndex(e => e.IdErreur, "FK_Afpa_Anomalies_Afpa_Erreurs");
+                entity.HasIndex(e => e.IdErreur, "Afpa_Anomalies_Afpa_Erreurs");
 
                 entity.Property(e => e.IdAnomalie).HasColumnType("int(11)");
 
                 entity.Property(e => e.IdErreur).HasColumnType("int(11)");
 
-                entity.Property(e => e.TypeAnomalie)
-                    .HasMaxLength(50)
-                    .HasComment("type : Temperature/Son/Lumiere");
-
                 entity.Property(e => e.NbDeclasses).HasColumnType("int(11)");
+
+                entity.Property(e => e.TypeAnomalie).HasMaxLength(50);
 
                 entity.HasOne(d => d.Erreur)
                     .WithMany(p => p.AfpaAnomalies)
                     .HasForeignKey(d => d.IdErreur)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Afpa_Anomalies_Afpa_Erreurs");
+                    .HasConstraintName("Afpa_Anomalies_Afpa_Erreurs");
+            });
+
+            modelBuilder.Entity<Afpa_Cadence>(entity =>
+            {
+                entity.HasKey(e => e.IdCadence)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("afpa_cadences");
+
+                entity.Property(e => e.IdCadence).HasColumnType("int(11)");
+
+                entity.Property(e => e.NbProduit).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Afpa_Couleur>(entity =>
@@ -69,9 +79,7 @@ namespace ProjetAutomate.Data
 
                 entity.ToTable("afpa_couleurs");
 
-                entity.Property(e => e.IdCouleur)
-                    .HasColumnType("int(11)")
-                    .HasComment("id1=Seuil bas/id2=Seuil moyen/id3=Seuil Haut ");
+                entity.Property(e => e.IdCouleur).HasColumnType("int(11)");
 
                 entity.Property(e => e.Blue).HasColumnType("int(11)");
 
@@ -102,6 +110,24 @@ namespace ProjetAutomate.Data
                 entity.Property(e => e.ValeurLumiere).HasColumnType("int(11)");
             });
 
+            modelBuilder.Entity<Afpa_Objectif>(entity =>
+            {
+                entity.HasKey(e => e.IdObjectif)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("afpa_objectifs");
+
+                entity.Property(e => e.IdObjectif).HasColumnType("int(11)");
+
+                entity.Property(e => e.MaxNombreArretDecibel).HasColumnType("int(11)");
+
+                entity.Property(e => e.MaxNombreArretTemperature).HasColumnType("int(11)");
+
+                entity.Property(e => e.MaxPourcentDeclasses).HasColumnType("int(11)");
+
+                entity.Property(e => e.Rendement).HasColumnType("int(11)");
+            });
+
             modelBuilder.Entity<Afpa_Seuil>(entity =>
             {
                 entity.HasKey(e => e.IdSeuil)
@@ -109,17 +135,13 @@ namespace ProjetAutomate.Data
 
                 entity.ToTable("afpa_seuils");
 
-                entity.Property(e => e.IdSeuil)
-                    .HasColumnType("int(11)")
-                    .HasComment("id1 = Temperature / \r\nid2 = Son / \r\nid3 Lumiere ");
+                entity.Property(e => e.IdSeuil).HasColumnType("int(11)");
 
                 entity.Property(e => e.DateSeuil).HasColumnType("date");
 
                 entity.Property(e => e.SeuilBas).HasColumnType("int(11)");
 
                 entity.Property(e => e.SeuilHaut).HasColumnType("int(11)");
-
-                entity.Property(e => e.Temps).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Afpa_Son>(entity =>
@@ -144,20 +166,6 @@ namespace ProjetAutomate.Data
                 entity.Property(e => e.IdTemperature).HasColumnType("int(11)");
 
                 entity.Property(e => e.ValeurTemperature).HasColumnType("decimal(3,1)");
-            });
-
-            modelBuilder.Entity<Afpa_Cadence>(entity =>
-            {
-                entity.HasKey(e => e.IdCadence)
-                    .HasName("PRIMARY");
-
-                entity.ToTable("afpa_cadences");
-
-                entity.Property(e => e.IdCadence).HasColumnType("int(11)");
-
-                entity.Property(e => e.NbProduit).HasColumnType("int(11)");
-
-                entity.Property(e => e.DateCadence).HasColumnType("date");
             });
 
             OnModelCreatingPartial(modelBuilder);
