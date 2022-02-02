@@ -65,32 +65,6 @@ namespace ProjetAutomate.Controllers
             return NoContent();
         }
 
-        // Exemple d'appel
-        // [{
-        // "op":"replace",
-        // "path":"",
-        // "value":""
-        // }]
-        //PATCH api/Afpa_Temperatures/{id}
-        //[HttpPatch("{id}")]
-        //public ActionResult PartialAfpa_TemperatureUpdate(int id, JsonPatchDocument<Afpa_Temperature> patchDoc)
-        //{
-        //    Afpa_Temperature objFromRepo = _service.GetAfpa_TemperatureById(id);
-        //    if (objFromRepo == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Afpa_Temperature objToPatch = _mapper.Map<Afpa_Temperature>(objFromRepo);
-        //    patchDoc.ApplyTo(objToPatch, ModelState);
-        //    if (!TryValidateModel(objToPatch))
-        //    {
-        //        return ValidationProblem(ModelState);
-        //    }
-        //    _mapper.Map(objToPatch, objFromRepo);
-        //    _service.UpdateAfpa_Temperature(objFromRepo);
-        //    return NoContent();
-        //}
-
         //DELETE api/Afpa_Temperatures/{id}
         [HttpDelete("{id}")]
         public ActionResult DeleteAfpa_Temperature(int id)
