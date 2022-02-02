@@ -38,14 +38,19 @@ nav div:active{
     }
     
 footer{
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color:rgb(132, 194, 132);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:rgb(132, 194, 132);
 }
 .demi{
- position: center
+    position: center
 } 
+
+.border{
+    border: 1px solid black;
+}
+
 .titre{
     font-family: cursive;
    font-size: 30px;

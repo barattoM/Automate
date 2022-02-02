@@ -15,7 +15,8 @@ if (isset($_GET['id'])) {
 	$elm = new Afpa_Seuils();
 }
 echo '<main class="center">';
-
+echo '<div></div>';
+echo '<div class="border center">';
 echo '<form class="GridForm" action="index.php?page=ActionAfpa_Seuils&mode='.$_GET['mode'].'" method="post"/>';
 
 	echo '<div class="caseForm titreForm col-span-form">Formulaire Afpa_Seuils</div>';
@@ -54,5 +55,6 @@ echo '<form class="GridForm" action="index.php?page=ActionAfpa_Seuils&mode='.$_G
 		</div>';
 
 echo'</form>';
-
+echo '</div>';
+echo '<div></div>';
 echo '</main>';
