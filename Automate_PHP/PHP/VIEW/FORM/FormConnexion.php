@@ -3,7 +3,8 @@ global $regex;
 ?>
 
 <main>
-    <section class="center colonne">
+    <div class="demi"></div>
+    <section class="center colonne border borderRadiuce">
         <form action="index.php?page=ActionConnexion" method="POST">
             <div class="colSpan2 center"><h1><?php echo texte('Connexion') ?></h1></div>
 
@@ -22,5 +23,7 @@ global $regex;
             <div></div>
             <input type="submit" value="<?php echo texte('Envoyer') ?>">
         </form>
+        <div class="bigEspace"></div>
     </section>
+    <div class="demi"></div>
 </main>

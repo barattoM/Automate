@@ -1,3 +1,10 @@
+.graphique{
+    margin-left: 20em;
+    margin-right: 20em;
+    border: 1px black solid;
+
+}
+
 header,footer {
     width:100%;
     background-color:rgb(132, 194, 132);   
@@ -93,4 +100,11 @@ footer{
 @-webkit-keyframes slideRight {
 	from {Right:0%;}
 	to {Right:-30%;}
+}
+
+.border{
+    border: solid var(--linkColor) 1px;
+}
+.borderRadiuce{
+    border-radius: 5vh;
 }
