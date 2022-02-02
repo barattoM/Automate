@@ -108,7 +108,6 @@ namespace ProjetAutomate.Data
 
                 entity.Property(e => e.IdLumiere).HasColumnType("int(11)");
 
-                entity.Property(e => e.ValeurLumiere).HasColumnType("int(11)");
             });
 
             //modelBuilder.Entity<Afpa_Objectif>(entity =>
@@ -140,9 +139,6 @@ namespace ProjetAutomate.Data
 
                 entity.Property(e => e.DateSeuil).HasColumnType("date");
 
-                entity.Property(e => e.SeuilBas).HasColumnType("int(11)");
-
-                entity.Property(e => e.SeuilHaut).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Afpa_Son>(entity =>
@@ -154,7 +150,6 @@ namespace ProjetAutomate.Data
 
                 entity.Property(e => e.IdSon).HasColumnType("int(11)");
 
-                entity.Property(e => e.ValeurSon).HasColumnType("int(11)");
             });
 
             modelBuilder.Entity<Afpa_Temperature>(entity =>
@@ -166,7 +161,6 @@ namespace ProjetAutomate.Data
 
                 entity.Property(e => e.IdTemperature).HasColumnType("int(11)");
 
-                entity.Property(e => e.ValeurTemperature).HasColumnType("decimal(3,1)");
             });
 
             OnModelCreatingPartial(modelBuilder);

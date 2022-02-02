@@ -7,13 +7,13 @@ namespace ProjetAutomate.Data.Dtos
 {
     public class Afpa_TemperaturesDTOIn
     {
-        public decimal? ValeurTemperature { get; set; }
+        public float? ValeurTemperature { get; set; }
         public DateTime? DateTemperature { get; set; }
     }
 
     public class Afpa_TemperaturesDTOOut
     {
-        public decimal? ValeurTemperature { get; set; }
+        public float? ValeurTemperature { get; set; }
         public DateTime? DateTemperature { get; set; }
     }
 }
