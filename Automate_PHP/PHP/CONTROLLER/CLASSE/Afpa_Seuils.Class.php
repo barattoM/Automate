@@ -47,7 +47,7 @@ class Afpa_Seuils
 
 	public function getDateSeuil()
 	{
-		return is_null($this->_DateSeuil)?null:$this->_DateSeuil->format('Y-n-j');
+		return is_null($this->_DateSeuil)?null:$this->_DateSeuil->format('d-m-Y');
 	}
 
 	public function setDateSeuil(?string $DateSeuil)
