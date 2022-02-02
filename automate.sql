@@ -108,7 +108,7 @@ CREATE TABLE Afpa_Anomalies(
    IdAnomalie INT AUTO_INCREMENT PRIMARY KEY,
    DateAnomalie DATETIME,
    TypeAnomalie VARCHAR(50),
-   NbDelaisses INT,
+   NbDeclasses INT,
    IdErreur INT NOT NULL
   
 )ENGINE=InnoDB;
@@ -167,6 +167,6 @@ INSERT INTO `afpa_cadances` (`IdCadance`, `NbProduit`, `DateCadance`) VALUES
 (2, 150, '2022-02-01 14:22:30');
 
 
-INSERT INTO `afpa_anomalies` (`IdAnomalie`, `DateAnomalie`, `TypeAnomalie`, `IdErreur`) VALUES
-(1, '2022-02-01 14:20:30', 'Lumière ', 3),
-(2, '2022-02-01 14:21:52', 'Son', 2);
+INSERT INTO `afpa_anomalies` (`IdAnomalie`, `DateAnomalie`, `TypeAnomalie`,`NbDeclasses`, `IdErreur`) VALUES
+(1, '2022-02-01 14:20:30', 'Lumière ',10, 3),
+(2, '2022-02-01 14:21:52', 'Son',10, 2);
