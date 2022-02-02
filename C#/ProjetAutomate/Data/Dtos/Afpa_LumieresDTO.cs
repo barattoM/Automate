@@ -8,13 +8,13 @@ namespace ProjetAutomate.Data.Dtos
    
         public class Afpa_LumieresDTOIn
         {
-            public int? ValeurLumiere { get; set; }
+            public float? ValeurLumiere { get; set; }
             public DateTime? DateLumiere { get; set; }
         }
 
         public class Afpa_LumieresDTOOut
         {
-            public int? ValeurLumiere { get; set; }
+            public float? ValeurLumiere { get; set; }
             public DateTime? DateLumiere { get; set; }
         }
 
