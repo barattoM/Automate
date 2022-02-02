@@ -1,0 +1,51 @@
+html, main, body, div, a, header, footer, nav, article, section, aside, fieldset, label, input, select {
+    display: flex;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+img, video, button {
+    width: 100%;
+}
+
+.colonne {
+    flex-direction: column;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Différent taille de flex. */
+.vMini { flex: 0.05; }
+
+.mini { flex: 0.2; }
+
+.demi { flex: 0.5; }
+
+.double { flex: 2; }
+
+.triple { flex: 3; }
+
+.espace {
+    flex: none;
+    height: 2vh;
+}
+
+.bigEspace {
+    flex: none;
+    height: 5vh;
+}
+
+.miniEspace {
+    flex: none;
+    height: 0.2vh;
+}
+
+.graph{
+    flex: none;
+    height: 30vw;
+}
+
