@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,15 +24,17 @@ namespace ProjetAutomate
             short son;
             List<Double> x = new List<Double>();
             List<Double> y = new List<Double>();
-
-            CreateHostBuilder(args).Build().Run();
+            Trace.WriteLine("*********************************************");
             Imports.OpenUnit(out handle);
             Imports.Run(handle, echantillonnage, Imports._BLOCK_METHOD.BM_STREAM);
             // puissance sonore
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_LEVEL, out value, out overflow);
             // Forme d'onde
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_WAVE, out value, out overflow);
-            Console.WriteLine(value);
+            Trace.WriteLine("*********************************************");
+            Trace.WriteLine(value);
+            CreateHostBuilder(args).Build().Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
