@@ -9,6 +9,6 @@ namespace ProjetAutomate.Data.Models
     {
         public int IdCadence { get; set; }
         public int? NbProduit { get; set; }
-        public int? Date { get; set; }
+        public DateTime? DateCadence { get; set; }
     }
 }

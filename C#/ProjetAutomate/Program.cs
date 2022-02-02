@@ -1,3 +1,4 @@
+using Interface_Carte_dAquisition_PicoDrDAQ;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,9 +12,26 @@ namespace ProjetAutomate
 {
     public class Program
     {
+        
+
         public static void Main(string[] args)
         {
+            short handle;
+            uint echantillonnage = 500;
+            ushort overflow;
+            short value;
+            short son;
+            List<Double> x = new List<Double>();
+            List<Double> y = new List<Double>();
+
             CreateHostBuilder(args).Build().Run();
+            Imports.OpenUnit(out handle);
+            Imports.Run(handle, echantillonnage, Imports._BLOCK_METHOD.BM_STREAM);
+            // puissance sonore
+            Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_LEVEL, out value, out overflow);
+            // Forme d'onde
+            Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_WAVE, out value, out overflow);
+            Console.WriteLine(value);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

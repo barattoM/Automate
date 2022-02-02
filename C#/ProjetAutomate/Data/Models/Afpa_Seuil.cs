@@ -11,6 +11,6 @@ namespace ProjetAutomate.Data.Models
         public int? SeuilBas { get; set; }
         public int? SeuilHaut { get; set; }
         public DateTime? DateSeuil { get; set; }
-        public int Temps { get; set; }
+        public int? Temps { get; set; }
     }
 }
