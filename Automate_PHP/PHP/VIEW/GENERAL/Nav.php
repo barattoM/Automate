@@ -1,12 +1,15 @@
-<nav>
-<div><a href='?page=ListeAfpa_Anomalies'>Afpa_Anomalies</a></div>
-<div><a href='?page=ListeAfpa_Cadences'>Afpa_Cadences</a></div>
-<div><a href='?page=ListeAfpa_Couleurs'>Afpa_Couleurs</a></div>
-<div><a href='?page=ListeAfpa_Erreurs'>Afpa_Erreurs</a></div>
-<div><a href='?page=ListeAfpa_Lumieres'>Afpa_Lumieres</a></div>
-<div><a href='?page=ListeAfpa_Objectifs'>Afpa_Objectifs</a></div>
-<div><a href='?page=ListeAfpa_Seuils'>Afpa_Seuils</a></div>
-<div><a href='?page=ListeAfpa_Sons'>Afpa_Sons</a></div>
-<div><a href='?page=ListeAfpa_Temperatures'>Afpa_Temperatures</a></div>
-<div><a href='?page=ListeUtilisateurs'>Utilisateurs</a></div>
+<nav id= "menu">
+<ul>
+<li><a href='?page=ListeAfpa_Anomalies'>Anomalies</a><li>
+<li><a href='?page=ListeAfpa_Cadences'>Cadences</a><li>
+<li><a href='?page=ListeAfpa_Couleurs'>Couleurs</a><li>
+<li><a href='?page=ListeAfpa_Erreurs'>Erreurs</a><li>
+<li><a href='?page=ListeAfpa_Lumieres'>Lumieres</a><li>
+<li><a href='?page=ListeAfpa_Objectifs'>Objectifs</a><li>
+<li><a href='?page=ListeAfpa_Seuils'>Seuils</a><li>
+<li><a href='?page=ListeAfpa_Sons'>Sons</a><li>
+<li><a href='?page=ListeAfpa_Temperatures'>Temperatures</a><li>
+<li><a href='?page=ListeUtilisateurs'>Utilisateurs</a><li>
+
+</ul>
 </nav>

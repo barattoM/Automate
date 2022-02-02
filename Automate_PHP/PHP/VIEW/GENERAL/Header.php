@@ -1,8 +1,9 @@
 <body class="colonne">
     <header>
         <div class="demi"></div>
-        <div><img src="" alt=""></div>
-        <div class="titre"><?php echo texte($titre); ?></div>
+        
+        <div><img src="./IMG/afpa.jfif" alt=""></div>
+        <div class="titre"><?php echo $titre; ?></div>
         <div class="colonne">
             <?php
 
@@ -15,5 +16,12 @@
             ?>
 
         </div>
-        <div class="demi"></div>
+        <div class="demi">
+
+        <div id="menu-burger">
+	<div class="bar1"></div>
+	<div class="bar2"></div>
+	<div class="bar3"></div>
+</div>
+        </div>
     </header>
