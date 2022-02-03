@@ -1,5 +1,7 @@
-
-<footer Class="background">
+</div>
+<div class ="bigEspace"></div>
+<div class ="bigEspace"></div>
+<footer Class="background ">
 <div class= "colonne center Alan"> 
     <div>AFPA</div>
     <div>Adresse : 407 Av. de la Gironde, 59640 Dunkerque</div>
@@ -9,6 +11,9 @@
 <?php
  if (substr($page[1],0,4)=="Form"){
     echo ' <script src="./JS/VerifForm.js"></script>';
+    if ($page[1] == "FormAfpa_Seuils") {
+        echo ' <script src="./JS/uniteMesure.js"></script>';
+    }
  }
  echo ' <script src="./JS/script.js"></script>';
 echo '</body>
