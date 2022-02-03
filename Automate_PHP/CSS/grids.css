@@ -22,7 +22,7 @@
 	grid-template-columns : 2fr 2fr 2fr 0.5fr 0.5fr 0.5fr;}
 
 .grid-columns-span-6 { 
-	grid-column:1/7;
+	grid-column: span 6;
 }
 
 .grid-col-4 {
@@ -51,7 +51,7 @@
 }
 
 .grid-columns-span-9 { 
-	grid-column:1/10;
+	grid-column: span 9;
 }
 
 
@@ -63,7 +63,7 @@
 }
 
 .grid-columns-span-3 { 
-	grid-column:1/4;
+	grid-column: span 3;
 }
 
 .gridListe div,button,a {
@@ -73,6 +73,7 @@
 
 .caseListe {
 	padding : 0.2em;
+	background-color: whitesmoke;
 	border: 1px solid black
 }
 
@@ -81,14 +82,24 @@
 }
 
 .GridForm {
-	 display : grid;
-	grid-template-columns: 2fr 2fr 0.5fr 0.5fr;
-	grid-gap: 0.5em;
+	display : grid;
+   grid-template-columns: 2fr 2fr 0.5fr 0.5fr;
+   grid-gap: 0.5em;
 }
 
-.GridForm div,button,a {
-	justify-content: center;
-	align-items: center;
+.GridForm div,button,a, .GridFormSeuil {
+   justify-content: center;
+   align-items: center;
+}
+
+.GridFormSeuil {
+	display : grid;
+  	grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+   	grid-gap: 0.5em;
+}
+
+.grid-columns-span-7 { 
+	grid-column: span 7;
 }
 
 .flex-0-1 {
