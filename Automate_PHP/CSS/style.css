@@ -347,12 +347,9 @@ align-self: center;
 }
 
 .Partie1{
-    background-color: #eeecec;
-}
-
-.Partie1, input{
     border: 1px black solid;
     box-shadow: 2px 2px 3px black;
+    background-color: #eeecec;
     
 }
 /*****La touche alan*****/
@@ -386,6 +383,9 @@ align-self: center;
     90%      { color: hsl(288, 60%, 40%); }
   }
   
-
+.imggraph{
+    
+    background-size: cover;
+}
 
 
