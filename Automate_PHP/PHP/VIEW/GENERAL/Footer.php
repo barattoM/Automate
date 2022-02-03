@@ -1,4 +1,4 @@
-
+</div>
 <footer>
 <div class= "colonne center"> 
     <div>AFPA</div>
