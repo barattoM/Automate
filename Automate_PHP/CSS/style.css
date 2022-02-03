@@ -35,7 +35,8 @@ nav div{
     position: absolute; 
     width: 15%;
     right: 0; 
-    height: 20%; /* Full height */
+    height: 20%; 
+   /* Full height */
     /* margin-top: 10vh; */
    
 
@@ -43,6 +44,7 @@ nav div{
    }
 nav div:active{
         box-shadow: -2px -2px 3px var(--linkColor);
+        /* display:none; */
     }
     
 footer{
@@ -97,9 +99,8 @@ font-family: 'Staatliches', cursive;
        margin-bottom:.5em; 
        box-shadow:1px 1px 0 rgb(185, 181, 181)}
 #menu ul li a:hover {background:rgb(132, 194, 132);   ; transition:background .9s;}
-
-#menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}
-#menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;}
+ #menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}  */
+#menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;} 
 
 /* Animations pour le menu slide */
 @keyframes slideRight {
