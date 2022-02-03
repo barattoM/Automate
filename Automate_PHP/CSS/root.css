@@ -4,8 +4,8 @@
     --inputCorrect: #04724d;
     --inputIncorrect: #e94f37;
     --inputVide: #ffffff4d;
-    --bgc1:#9ee0a9;
-    --bgc2:#9ee0e0;
+    --bgc1:rgb(132, 194, 132);
+    --bgc2:rgb(209, 202, 202);
     --linkColor : black;
 }
 
@@ -48,6 +48,11 @@ img, video, button {
 .bigEspace {
     flex: none;
     height: 5vh;
+}
+
+.BIGEspace {
+    flex: none;
+    height: 10em;
 }
 
 .miniEspace {
