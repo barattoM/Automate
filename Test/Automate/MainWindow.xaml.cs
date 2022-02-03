@@ -52,53 +52,38 @@ namespace Automate
             //Ouverture des acquisitions
             Imports.OpenUnit(out handle);
             Imports.Run(handle, echantillonnage, Imports._BLOCK_METHOD.BM_STREAM);
-            /* Son */
-
+            /* Acquisition périodique */
             System.Windows.Threading.DispatcherTimer Son = new System.Windows.Threading.DispatcherTimer();
-            Son.Tick += AcquisitionSon;
+            Son.Tick += Acquisitions;
             Son.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
             Son.Start();
-
-            /*Temperature*/
-
-            System.Windows.Threading.DispatcherTimer Temperature = new System.Windows.Threading.DispatcherTimer();
-            Temperature.Tick += AcquisitionTemperature;
-            Temperature.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
-            Temperature.Start();
-
-            /*Lumiere*/
-
-            System.Windows.Threading.DispatcherTimer Lumiere = new System.Windows.Threading.DispatcherTimer();
-            Lumiere.Tick += AcquisitionLumiere;
-            Lumiere.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
-            Lumiere.Start();
-
         }
 
-        public void AcquisitionSon(object sender, EventArgs e)
+        public void Acquisitions(object sender, EventArgs e)
         {
+            /* Son */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_LEVEL, out son, out overflow);
-            mesureSon.Add(Convert.ToString(Convert.ToDouble(son) / 10));
-        }
+            string stringSon = Convert.ToString(Convert.ToDouble(son) / 10);
+            mesureSon.Add(stringSon);
 
-        public void AcquisitionTemperature(object sender, EventArgs e)
-        {
+            /* Temperature */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_TEMP, out temp, out overflow);
-            mesureTemperature.Add(Convert.ToString((temp * 0.088)));
-        }
+            string stringTemp = Convert.ToString((temp * 0.088));
+            mesureTemperature.Add(stringTemp);
 
-        public void AcquisitionLumiere(object sender, EventArgs e)
-        {
+            /* Lumière */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_LIGHT, out lum, out overflow);
-            mesureLumiere.Add(Convert.ToString(Convert.ToDouble(lum) / 10));
+            string stringLum = Convert.ToString(Convert.ToDouble(lum) / 10);
+            mesureLumiere.Add(stringLum);
+
             //Création de la date du jour (on le gère ici seulement car les 3 relevées sont simultanée)
             string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             tabDate.Add(date);
             //On affiche les logs sur la fenetre
             Log.Text += date
-                + "\nRelevé température : " + Convert.ToString((temp * 0.088))
-                + "\nRelevé lumière : " + Convert.ToString(Convert.ToDouble(lum) / 10)
-                + "\nRelevé son : " + Convert.ToString(Convert.ToDouble(son) / 10)
+                + "\nRelevé température : " + stringTemp
+                + "\nRelevé lumière : " + stringLum
+                + "\nRelevé son : " + stringSon
                 + "\n\n";
             //On lance l'envoie à la base
             EnvoieBase();
@@ -129,6 +114,7 @@ namespace Automate
                 mesureSon.Clear();
                 mesureLumiere.Clear();
                 mesureTemperature.Clear();
+                tabDate.Clear();
 
                 //On crée la requête lié à la connexion, puis on ouvre la connexion à la base de données et on exécute la requêtes avant de fermer la connexion à la BDD pour laisser la place autre requête de se faire
                 /*Son*/

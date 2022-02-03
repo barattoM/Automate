@@ -1,8 +1,9 @@
-.graphique{
+.graphiqueAnomalie{
     margin-left: 20em;
     margin-right: 20em;
     border: 1px black solid;
 }
+
 
 header,footer {
     width:100%;
@@ -107,3 +108,193 @@ footer{
 .borderRadiuce{
     border-radius: 5vh;
 }
+
+header,footer {
+    width:100%;
+    background-color:rgb(132, 194, 132);   
+}
+
+body{
+    background-color: rgb(209, 202, 202);
+}
+
+img{
+    width:50%; 
+}
+
+nav div{
+    padding: 10px;
+    border: 1px solid;
+    margin: 0px;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgb(211, 203, 193);
+   
+    
+    }  
+  nav{
+    flex-direction: column;
+    list-style-type: none;
+    position: fixed; /* Make it stick, even on scroll */
+    width: 15%;
+    right: 0;
+    height: 10%; /* Full height */
+    /* overflow: auto; Enable scrolling if the sidenav has too much content */
+    }
+nav div:active{
+        box-shadow: -2px -2px 3px black;
+    }
+    
+footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color:rgb(132, 194, 132);
+}
+.demi{
+ position: center
+} 
+.titre{
+    font-family: cursive;
+   font-size: 30px;
+   position: center;
+   
+}
+
+
+
+/***** Accueil *****/ 
+.AccueilContenu{
+
+    display: flex;
+    
+}
+.marge {
+
+    flex: 1;
+}
+.AccueilCentre{
+flex : 10; 
+    display: flex;
+    flex-direction: column;
+    
+}
+.AccueilPartie1{ 
+flex: 10;
+    display: flex ; 
+    
+    
+
+}
+
+.Objectif {
+    flex: 10;
+    border : 1px solid black; 
+display: flex;
+flex-direction: column;
+padding-bottom:2em;
+background: linear-gradient(#faf7f7, #e96868);
+border-radius: 5%;
+}
+.Objectif h3{
+
+    text-align: center;
+}
+
+.EspaceObjectifStatus{
+    flex : 1 ; 
+}
+
+.Status{
+    flex : 2; 
+    border : 1px solid black;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(#faf7f7, #e96868);
+    border-radius: 5%;
+}
+
+.Status img {
+
+    align-self: center;
+}
+.Espace05{
+    flex : 0.5; 
+}
+
+.Espace04{
+    flex : 0.43; 
+}
+
+.Espace01{
+    flex : 0.15; 
+}
+
+.contenuObjectif{
+    display : flex; 
+  
+}
+#RendementS{
+     margin-bottom:2em; 
+}
+.caseBlanche{
+    background-color: white; 
+    flex : 1; 
+    border : 1px solid black ;  margin-bottom:2em; 
+   justify-content:center;
+}
+
+.ContenuAccueilG {
+
+    border-top: 1px solid black ; 
+    display : flex ; 
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+fieldset{
+    margin-right: 2em ;
+}
+
+
+.txtNom{
+   font-size:0.8em;   
+   flex: 2;
+   align-items: center;
+   text-align: center;
+}
+
+.AccueilPartie2{
+
+
+        display: flex;
+        flex-wrap: wrap;
+        /* pour prendre la place dont il a besoin */
+        justify-content: space-around;
+      
+    
+      
+}
+.graphique{
+    flex-direction: column;
+	width: calc(25% - 2rem);
+	min-width: 20vw;
+	align-items: center;
+	display: flex;
+	
+	margin: 2em;
+	box-shadow: 3px 3px rgba(191, 194, 25, 0.637), -1em 0 .4em rgb(133, 197, 114);
+border-radius: 1em;
+}
+
+
+.graphique img{
+    height : 20vh; 
+    width : 20vw; 
+}
+
+
+
+
+
+
+

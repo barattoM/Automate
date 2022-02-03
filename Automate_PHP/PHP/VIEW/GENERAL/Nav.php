@@ -1,4 +1,4 @@
-<nav id= "menu">
+<!-- <nav id= "menu">
 <ul>
 <?php
 echo $nom;
@@ -20,4 +20,4 @@ echo $nom;
 
 
 </ul>
-</nav>
+</nav> -->
