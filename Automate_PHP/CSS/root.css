@@ -50,6 +50,11 @@ img, video, button {
     height: 5vh;
 }
 
+.BIGEspace {
+    flex: none;
+    height: 10em;
+}
+
 .miniEspace {
     flex: none;
     height: 0.2vh;
