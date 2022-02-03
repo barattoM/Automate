@@ -1,17 +1,17 @@
 .graphique{
     margin-left: 20em;
     margin-right: 20em;
-    border: 1px black solid;
+    border: 1px var(--linkColor) solid;
 
 }
 
 header,footer {
     width:100%;
-    background-color:rgb(132, 194, 132);   
+    background-color:var(--bgc1);   
 }
 
 body{
-    background-color: rgb(209, 202, 202);
+    background-color: var(--bgc2);
 }
 
 img{
@@ -22,7 +22,7 @@ nav div{
     padding: 15px;
     border: 1px solid;
     margin: 0px;
-    box-shadow: 2px 2px 3px black;
+    box-shadow: 2px 2px 3px var(--linkColor);
     background-color: rgb(157, 208, 250);
     font-family: cursive;
     
@@ -41,22 +41,18 @@ nav div{
     
    }
 nav div:active{
-        box-shadow: -2px -2px 3px black;
+        box-shadow: -2px -2px 3px var(--linkColor);
     }
     
 footer{
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color:rgb(132, 194, 132);
+    background-color:var(--bgc1);
 }
 .demi{
     position: center
 } 
-
-.border{
-    border: 1px solid black;
-}
 
 .titre{
     font-family: cursive;
@@ -107,4 +103,34 @@ footer{
 }
 .borderRadiuce{
     border-radius: 5vh;
+}
+
+#iconCo{
+    flex: none;
+    border-radius: 100%;
+    position:absolute;
+    top: 0;
+    height: min(20vh,20vw);
+    width: min(20vh,20vw);
+    transform: translateY(-50%);
+    background-color: var(--bgc2);
+    overflow: hidden;
+}
+#teteIconCo{
+    flex: none;
+    border-radius: 100%;
+    position:absolute;
+    top: min(2vh,2vw);
+    height: min(10vh,10vw);
+    width: min(10vh,10vw);
+    background-color: var(--bgc1);
+}
+#corpsIconCo{
+    flex: none;
+    border-radius: 100%;
+    position:absolute;
+    top: min(12vh,12vw);
+    height: min(20vh,20vw);
+    width: min(20vh,20vw);
+    background-color: var(--bgc1);
 }
