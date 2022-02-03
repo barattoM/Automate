@@ -8,7 +8,8 @@
 
 header,footer {
     width:100%;
-    background-color:var(--bgc1);   
+  
+    margin-bottom:2em;
 }
 
 body{
@@ -34,7 +35,8 @@ nav div{
     position: absolute; 
     width: 15%;
     right: 0; 
-    height: 20%; /* Full height */
+    height: 20%; 
+   /* Full height */
     /* margin-top: 10vh; */
    
 
@@ -42,6 +44,7 @@ nav div{
    }
 nav div:active{
         box-shadow: -2px -2px 3px var(--linkColor);
+        /* display:none; */
     }
     
 footer{
@@ -62,9 +65,12 @@ footer{
 }
 
 .titre{
-    font-family: cursive;
-   font-size: 30px;
-   position: center;
+    font-family: 'Alfa Slab One', cursive;
+font-family: 'Staatliches', cursive;
+   font-size: 4em;
+   color: white;
+   justify-content: center;
+   align-items: center;
    
 }
 /* Menu burger */
@@ -93,9 +99,8 @@ footer{
        margin-bottom:.5em; 
        box-shadow:1px 1px 0 rgb(185, 181, 181)}
 #menu ul li a:hover {background:rgb(132, 194, 132);   ; transition:background .9s;}
-
-#menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}
-#menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;}
+ #menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}  */
+#menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;} 
 
 /* Animations pour le menu slide */
 @keyframes slideRight {
@@ -217,13 +222,14 @@ flex: 10;
 }
 
 .Objectif {
-    flex: 10;
+    flex: 8;
     border : 1px solid black; 
 display: flex;
 flex-direction: column;
 padding-bottom:2em;
-background: linear-gradient(#faf7f7, #e96868);
+background: linear-gradient(rgba(191, 194, 25, 0.637), rgba(238, 228, 228, 0.712) ,rgb(133, 197, 114));
 border-radius: 5%;
+
 }
 .Objectif h3{
 
@@ -231,21 +237,28 @@ border-radius: 5%;
 }
 
 .EspaceObjectifStatus{
-    flex : 1 ; 
+    flex : 0.5; 
 }
 
 .Status{
-    flex : 2; 
+    flex : 2.5; 
+    align-items: center;
+    text-align: center;
     border : 1px solid black;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(#faf7f7, #e96868);
+    background: linear-gradient(rgba(191, 194, 25, 0.637), rgba(238, 228, 228, 0.712) ,rgb(133, 197, 114));
     border-radius: 5%;
 }
 
 .Status img {
 
     align-self: center;
+}
+
+.barreBasse {
+    border-top: 1px solid black;
+    width: 100%;
 }
 .Espace05{
     flex : 0.5; 
@@ -306,12 +319,14 @@ fieldset{
 }
 .graphique{
     flex-direction: column;
-	width: calc(25% - 2rem);
-	min-width: 20vw;
+	width: calc(20% - 2rem);
+	min-width: 18vw;
+    max-width: 25vw;
 	align-items: center;
 	display: flex;
 	
-	margin: 2em;
+	padding: 0.5em;
+    margin: 2em; 
 	box-shadow: 3px 3px rgba(191, 194, 25, 0.637), -1em 0 .4em rgb(133, 197, 114);
 border-radius: 1em;
 }
@@ -333,9 +348,37 @@ align-self: center;
         align-self: center;
 }
 
+/*****La touche alan*****/
 
 
-
+.Alan {
+    /* animation */ 
+    animation: inherit;
+  }
+  .background {
+    color: hsl(324, 70%, 45%);
+    animation: wheelHueColor 10s infinite;
+    background-color: currentColor;
+  }
+  @supports (background-blend-mode: overlay) {
+    .background {
+      background-image: linear-gradient(45deg, white 10%, black 90%);
+      background-blend-mode: overlay;
+    }
+  }
+  @keyframes wheelHueColor {
+    from, to { color: hsl(324, 70%, 45%); }
+    10%      { color: hsl(360, 65%, 45%); }
+    20%      { color: hsl( 36, 80%, 45%); }
+    30%      { color: hsl( 72, 75%, 35%); }
+    40%      { color: hsl(108, 65%, 35%); }
+    50%      { color: hsl(144, 75%, 35%); }
+    60%      { color: hsl(180, 75%, 35%); }
+    70%      { color: hsl(216, 60%, 45%); }
+    80%      { color: hsl(252, 65%, 50%); }
+    90%      { color: hsl(288, 60%, 40%); }
+  }
+  
 
 
 
