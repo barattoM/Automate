@@ -1,12 +1,63 @@
 
+<?php
+
+	echo '<div class="Partie1">';
+
+echo '<div class="grid-col-9">';
+
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div class="center"> Debut :</div>';
+  echo '<div></div>';
+  echo '<div> <input id="inputR" class="center" type=text id="date"  placeholder="Date"> </div>';
+  echo '<div></div>';
+  echo '<div> <input id="inputR" type=text class="center" placeholder="Heure"> </div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div class="center"> Fin :</div>';
+  echo '<div></div>';
+  echo '<div> <input id="inputR" type=text  placeholder="Date"> </div>';
+  echo '<div></div>';
+  echo '<div> <input id="inputR" type=text  placeholder="Heure"> </div>';
+  echo '<div></div>';
+  echo '<div> <input class="center" id="valider" type=button Value="Valider"> </div>';
+  echo '<div></div>';
+  echo 	'<select> 
+        <option value="Global">Global</option>
+        <option value="Temperatures">Temperatures</option>
+        <option value="Sons">Sons</option>
+        <option value="lumieres">Lumieres</option>
+      </select>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+  echo '<div></div>';
+echo '</div>';
+
+echo '</div>';
 
 
 
 
-
-
-
-
+?>
 
 
 
