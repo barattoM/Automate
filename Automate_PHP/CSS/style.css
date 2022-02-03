@@ -102,6 +102,11 @@ font-family: 'Staatliches', cursive;
  #menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}  */
 #menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;} 
 
+
+.menu {
+    height:20em; 
+    
+}
 /* Animations pour le menu slide */
 @keyframes slideRight {
 	from {Right:-30%;}
@@ -188,12 +193,7 @@ footer{
 .demi{
  position: center
 } 
-.titre{
-    font-family: cursive;
-   font-size: 30px;
-   position: center;
-   
-}
+
 
 
 
@@ -348,11 +348,24 @@ align-self: center;
         align-self: center;
 }
 
+.graph{
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black; 
+   align-items: center; 
+}
+
+.graph img {
+    height: 20vh;
+    width: 20vw;
+    padding:0.5em; 
+    border-radius: 20%;
+}
 /*****La touche alan*****/
 
 
 .Alan {
-    /* animation */ 
+    /* animation header*/ 
     animation: inherit;
   }
   .background {

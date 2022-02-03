@@ -28,7 +28,7 @@ $routes=[
    "Default"=>["PHP/VIEW/FORM/","FormConnexion","Connexion",0,false],
    "Inscription"=>["PHP/VIEW/FORM/","FormInscription","Inscription",0,false],
 	"Accueil"=>["PHP/VIEW/GENERAL/","Accueil","Accueil",0,false],
-	"Lumiere"=>["PHP/VIEW/GENERAL/","Lumiere","Lumiere",0,false],
+	"ListeAfpa_LumiereVisuel"=>["PHP/VIEW/LISTE/","ListeAfpa_LumiereVisuel","Lumiere",0,false],
 
 
 
