@@ -287,6 +287,17 @@ border-radius: 1em;
     width : 20vw; 
 }
 
+#inputR{
+align-self: center;
+    width: 5vw;
+    height: 3vh;
+}
+
+.pourcent {
+   
+        align-self: center;
+}
+
 
 
 

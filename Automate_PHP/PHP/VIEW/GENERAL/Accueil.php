@@ -13,8 +13,8 @@
                             <div class="Espace04"></div>
                             <div class="txtNom">Rendement : </div>
                             <div class="Espace01"></div>
-                            <div class="caseBlanche">300</div>
-                            <select name="RendementS" id="RendementS">
+                            <input type="text" id="inputR" name="inputR" required >
+                            <select name="RendementS " class="pourcent">
                                 <option value="heure">/h</option>
                                 <option value="minute">/min</option>
                                 <option value="jour">/jour</option>
@@ -25,9 +25,9 @@
                             <div class="Espace04"></div>
                             <div class="txtNom">Déclassés : </div>
                             <div class="Espace01"></div>
-                            <div class="caseBlanche">65</div>
+                            <input type="text" id="inputR" name="inputR" required >
                             <div class="Espace01"></div>
-                            <div>%</div>
+                            <div class="pourcent">%</div>
                         </div>
                     </div>
 
@@ -39,15 +39,15 @@
                                     <div class="Espace05"></div>
                                     <div class="txtNom">Cause Temperature : </div>
                                     <div class="Espace05"></div>
-                                    <div class="caseBlanche">300</div>
-                                    <div class="Espace05"></div>
+                                    <input type="text" id="inputR" name="inputR" required >
+                            <div class="Espace05"></div>
                                 </div>
                                 <div class="contenuObjectif">
                                     <div class="Espace05"></div>
                                     <div class="txtNom">Cause sons : </div>
                                     <div class="Espace05"></div>
-                                    <div class="caseBlanche">65</div>
-                                    <div class="Espace05"></div>
+                                    <input type="text" id="inputR" name="inputR" required >
+                            <div class="Espace05"></div>
 
                                 </div>
                             </div>
