@@ -63,9 +63,9 @@ $routes=[
 	"FormAfpa_Objectifs"=>["PHP/VIEW/FORM/","FormAfpa_Objectifs","Formulaire Afpa_Objectifs",0,false],
 	"ActionAfpa_Objectifs"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Objectifs","Action Afpa_Objectifs",0,false],
 
-	"ListeAfpa_Seuils"=>["PHP/VIEW/LISTE/","ListeAfpa_Seuils","Liste Afpa_Seuils",0,false],
-	"FormAfpa_Seuils"=>["PHP/VIEW/FORM/","FormAfpa_Seuils","Formulaire Afpa_Seuils",0,false],
-	"ActionAfpa_Seuils"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Seuils","Action Afpa_Seuils",0,false],
+	"ListeAfpa_Seuils"=>["PHP/VIEW/LISTE/","ListeAfpa_Seuils","Liste Seuils",0,false],
+	"FormAfpa_Seuils"=>["PHP/VIEW/FORM/","FormAfpa_Seuils","Formulaire Seuils",0,false],
+	"ActionAfpa_Seuils"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Seuils","Action Seuils",0,false],
 
 	"ListeAfpa_Sons"=>["PHP/VIEW/LISTE/","ListeAfpa_Sons","Liste Afpa_Sons",0,false],
 	"FormAfpa_Sons"=>["PHP/VIEW/FORM/","FormAfpa_Sons","Formulaire Afpa_Sons",0,false],
