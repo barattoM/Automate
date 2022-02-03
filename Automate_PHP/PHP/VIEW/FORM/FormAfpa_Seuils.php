@@ -36,16 +36,21 @@ echo '<div>';
 			echo '<fieldset class="grid-columns-span-9 fieldsetFormSeuil">';
 				echo '<legend>Seuil</legend>';
 
-				echo '<label for=SeuilBas class="caseForm labelForm">'.texte("Seuil Bas").'</label>';
-				echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilBas().'" name=SeuilBas pattern="'.$regex["num"].'" required ></div>';
-				echo '<div class="center">°C</div>';
+				echo '<div class="phoneCol">';
+					echo '<div>';
+						echo '<label for=SeuilBas class="caseForm labelForm">'.texte("Seuil Bas").'</label>';
+						echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilBas().'" name=SeuilBas pattern="'.$regex["num"].'" required ></div>';
+						echo '<div class="center">°C</div>';
+					echo '</div>';
 
-				echo '<div class="demi"></div>';
+					echo '<div class="demi espace"></div>';
 
-				echo '<label for=SeuilHaut class="caseForm labelForm">'.texte("Seuil Haut").'</label>';
-				echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilHaut().'" name=SeuilHaut pattern="'.$regex["num"].'" required ></div>';
-				echo '<div class="center">°C</div>';
-
+					echo '<div>';
+						echo '<label for=SeuilHaut class="caseForm labelForm">'.texte("Seuil Haut").'</label>';
+						echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilHaut().'" name=SeuilHaut pattern="'.$regex["num"].'" required ></div>';
+						echo '<div class="center">°C</div>';
+					echo '</div>';
+				echo '</div>';
 			echo '</fieldset>';
 
 			//ligne 3
