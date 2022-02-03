@@ -61,6 +61,7 @@
             <div class="EspaceObjectifStatus"></div>
             <div class="Status">
                 <h3> Status du rendement</h3>
+                <div class="barreBasse"></div>
                 <img src="IMG/CercleVert.png" alt="">
                 <div class="txtNom"> Bon état de rendement</div>
             </div>
@@ -121,6 +122,7 @@
 
         </div>
 
-        <div class="marge"></div>
+       
     </div>
+     <div class="marge"></div>
 </div>

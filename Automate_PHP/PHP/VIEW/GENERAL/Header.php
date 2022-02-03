@@ -1,8 +1,8 @@
-<body class="colonne">
-    <header>
-        <div class="demi"></div>
+<body class="colonne ">
+    <header class="background">
+        <div class="demi Alan"></div>
         
-        <div><img src="./IMG/afpa.jfif" alt=""></div>
+        <div><img src="./IMG/pingouin.png" alt=""></div>
         <div class="titre"><?php echo $titre; ?></div>
         <div class="colonne">
             <?php
