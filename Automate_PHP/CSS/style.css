@@ -6,8 +6,8 @@
 
 header,footer {
     width:100%;
-  
-    margin-bottom:2em;
+
+/* margin-bottom:2em; */
 }
 
 body{
@@ -35,7 +35,7 @@ nav div{
     right: 0; 
     height: 20%; 
    /* Full height */
-    /* margin-top: 10vh; */
+     margin-top: 0vh; 
    
 
     
@@ -46,7 +46,7 @@ nav div:active{
     }
     
 footer{
-    position: fixed;
+    position:fixed;
     bottom: 0;
     width: 100%;
     background-color:var(--bgc1);
@@ -63,8 +63,8 @@ footer{
 }
 
 .titre{
-    font-family: 'Alfa Slab One', cursive;
-font-family: 'Staatliches', cursive;
+   font-family: 'Alfa Slab One', cursive;
+   font-family: 'Staatliches', cursive;
    font-size: 4em;
    color: white;
    justify-content: center;
@@ -83,10 +83,12 @@ font-family: 'Staatliches', cursive;
 #menu-burger.clicked .bar3 {-webkit-transform:rotate(45deg) translate(-8px, -8px); transform:rotate(45deg) translate(-8px, -8px);}
 
 /* Main menu (slide) */
-#menu {position:fixed;z-index:9999 ; right:0; top:auto; 
-    background:rgb(132, 194, 132);   ; 
+#menu {z-index:9999 ; right:0; top:auto; 
+  
     padding:4em 2em; width:10%; min-height:100%;
-    box-shadow:1px 0 1px #b5b9ab;}
+    box-shadow:1px 0 1px #b5b9ab; 
+    height: 20em;
+}
 #menu ul li {list-style:none;}
 
 #menu ul li a {display:block; color:rgb(37, 35, 35);
@@ -97,8 +99,8 @@ font-family: 'Staatliches', cursive;
        margin-bottom:.5em; 
        box-shadow:1px 1px 0 rgb(185, 181, 181)}
 #menu ul li a:hover {background:rgb(132, 194, 132);   ; transition:background .9s;}
- #menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}  */
-#menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;} 
+#menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}  
+/* #menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;}  */
 
 /* Animations pour le menu slide */
 @keyframes slideRight {
@@ -167,11 +169,11 @@ nav div{
   nav{
     flex-direction: column;
     list-style-type: none;
-    position: fixed; /* Make it stick, even on scroll */
+     position: fixed;  
     width: 15%;
     right: 0;
      height: 10%; /*Full height */
-    /* overflow: auto; Enable scrolling if the sidenav has too much content */
+     /*overflow: auto; Enable scrolling if the sidenav has too much content */
     }
 nav div:active{
         box-shadow: -2px -2px 3px black;
@@ -347,12 +349,9 @@ align-self: center;
 }
 
 .Partie1{
-    background-color: #eeecec;
-}
-
-.Partie1, input{
     border: 1px black solid;
     box-shadow: 2px 2px 3px black;
+    background-color: #eeecec;
     
 }
 /*****La touche alan*****/
@@ -386,6 +385,9 @@ align-self: center;
     90%      { color: hsl(288, 60%, 40%); }
   }
   
-
+.imggraph{
+    
+    background-size: cover;
+}
 
 
