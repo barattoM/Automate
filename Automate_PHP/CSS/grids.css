@@ -71,11 +71,11 @@
 }
 
 .grid-col-9 {
-	margin-left: 20em;
-	margin-right: 20em;
 	display : grid;
-	grid-template-columns : 0.2fr 0.1fr 0.5fr 0.2fr 0.5fr 0.1fr 0.3fr 1fr 0.8fr;
+	grid-template-columns : 1fr 0.1fr 1fr 0.1fr 1fr 0.1fr 1fr 0.1fr 1fr 0.1fr;
 	grid-gap: 2em;
+	
+	
 }
 
 .grid-columns-span-9 { 
