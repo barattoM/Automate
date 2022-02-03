@@ -1,6 +1,4 @@
 .graphiqueAnomalie{
-    margin-left: 20em;
-    margin-right: 20em;
     border: 1px var(--linkColor) solid;
 
 }
@@ -145,7 +143,6 @@ footer{
     background-color: var(--bgc1);
 }
 
-<<<<<<< HEAD
 nav div{
     padding: 10px;
     border: 1px solid;
@@ -183,8 +180,6 @@ footer{
    position: center;
    
 }
-=======
->>>>>>> be916b704a4634d01a12a985008b03fc3467a3e0
 
 
 
@@ -329,9 +324,13 @@ align-self: center;
         align-self: center;
 }
 
+.Partie1{
+    background-color: #eeecec;
+}
 
-
-
-
-
+.Partie1, input{
+    border: 1px black solid;
+    box-shadow: 2px 2px 3px black;
+    
+}
 
