@@ -41,6 +41,12 @@ namespace ProjetAutomate.Data.Services
             return _context.Afpa_Cadences.ToList();
         }
 
+        public IEnumerable<Afpa_Cadence> GetAfpa_CadencesByDate(DateTime date)
+        {
+            return _context.Afpa_Cadences.Where(a => a.DateCadence.Date == date.Date).ToList();
+        }
+
+
         public Afpa_Cadence GetAfpa_CadenceById(int id)
         {
             return _context.Afpa_Cadences.FirstOrDefault(obj => obj.IdCadence == id);

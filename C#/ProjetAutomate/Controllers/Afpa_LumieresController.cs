@@ -32,6 +32,14 @@ namespace ProjetAutomate.Controllers
             return Ok(_mapper.Map<IEnumerable<Afpa_LumieresDTOOut>>(listeAfpa_Lumieres));
         }
 
+        //GET api/Afpa_Lumieres/ByInterval
+        [HttpGet("ByInterval", Name = "GetAfpa_LumieresByInterval")]
+        public ActionResult<IEnumerable<Afpa_LumieresDTOOut>> GetAfpa_LumieresByDate(DateTime date1, DateTime date2)
+        {
+            IEnumerable<Afpa_Lumiere> listeAfpa_Lumieres = _service.GetAfpa_LumieresByInterval(date1, date2);
+            return Ok(_mapper.Map<IEnumerable<Afpa_LumieresDTOOut>>(listeAfpa_Lumieres));
+        }
+
         //GET api/Afpa_Lumieres/{i}
         [HttpGet("{id}", Name = "GetAfpa_LumiereById")]
         public ActionResult<Afpa_LumieresDTOOut> GetAfpa_LumiereById(int id)

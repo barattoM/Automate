@@ -41,6 +41,11 @@ namespace ProjetAutomate.Data.Services
             return _context.Afpa_Lumieres.ToList();
         }
 
+        public IEnumerable<Afpa_Lumiere> GetAfpa_LumieresByInterval(DateTime date1, DateTime date2)
+        {
+            return _context.Afpa_Lumieres.Where(a => a.DateLumiere.Date >= date1 && a.DateLumiere.Date <= date2).ToList();
+        }
+
         public Afpa_Lumiere GetAfpa_LumiereById(int id)
         {
             return _context.Afpa_Lumieres.FirstOrDefault(obj => obj.IdLumiere == id);

@@ -14,6 +14,7 @@ if (isset($_GET['id'])) {
 } else {
 	$elm = new Afpa_Seuils();
 }
+
 echo '<main class="colonne">';
 echo '<div class="bigEspace"></div>';
 echo '<div>';
@@ -24,7 +25,7 @@ echo '<div>';
 			echo '<div class="noDisplay"><input type="hidden" value="'.$elm->getIdSeuil().'" name=IdSeuil></div>';
 			//ligne 1
 			echo '<div class="caseForm donneeForm grid-columns-span-9">';
-				echo '<select name="nature" '.$disabled.' required>';
+				echo '<select id="nature" name="nature" '.$disabled.' required>';
 					echo '<option value="">Sélectionner un élément a qui appliqué le seuil</option>';
 					echo '<option value="1" '. (($elm->getNature() == 1)?"Selected":"") .'>Températures</option>';
 					echo '<option value="2" '. (($elm->getNature() == 2)?"Selected":"") .'>Sons</option>';
@@ -40,7 +41,7 @@ echo '<div>';
 					echo '<div>';
 						echo '<label for=SeuilBas class="caseForm labelForm">'.texte("Seuil Bas").'</label>';
 						echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilBas().'" name=SeuilBas pattern="'.$regex["num"].'" required ></div>';
-						echo '<div class="center">°C</div>';
+						echo '<div class="center uniteMesure"></div>';
 					echo '</div>';
 
 					echo '<div class="demi espace"></div>';
@@ -48,7 +49,7 @@ echo '<div>';
 					echo '<div>';
 						echo '<label for=SeuilHaut class="caseForm labelForm">'.texte("Seuil Haut").'</label>';
 						echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getSeuilHaut().'" name=SeuilHaut pattern="'.$regex["num"].'" required ></div>';
-						echo '<div class="center">°C</div>';
+						echo '<div class="center uniteMesure"></div>';
 					echo '</div>';
 				echo '</div>';
 			echo '</fieldset>';
