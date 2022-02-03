@@ -41,6 +41,12 @@ namespace ProjetAutomate.Data.Services
             return _context.Afpa_Sons.ToList();
         }
 
+        public IEnumerable<Afpa_Son> GetAfpa_SonsByInterval(DateTime date1, DateTime date2)
+        {
+            return _context.Afpa_Sons.Where(a => a.DateSon.Date >= date1 && a.DateSon.Date <= date2).ToList();
+        }
+
+
         public Afpa_Son GetAfpa_SonById(int id)
         {
             return _context.Afpa_Sons.FirstOrDefault(obj => obj.IdSon == id);

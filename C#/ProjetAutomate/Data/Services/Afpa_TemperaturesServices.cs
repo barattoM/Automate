@@ -41,6 +41,11 @@ namespace ProjetAutomate.Data.Services
             return _context.Afpa_Temperatures.ToList();
         }
 
+        public IEnumerable<Afpa_Temperature> GetAfpa_TemperaturesByInterval(DateTime date1, DateTime date2)
+        {
+            return _context.Afpa_Temperatures.Where(a => a.DateTemperature.Date >= date1 && a.DateTemperature.Date <= date2).ToList();
+        }
+
         public Afpa_Temperature GetAfpa_TemperatureById(int id)
         {
             return _context.Afpa_Temperatures.FirstOrDefault(obj => obj.IdTemperature == id);
