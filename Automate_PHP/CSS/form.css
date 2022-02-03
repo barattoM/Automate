@@ -33,6 +33,10 @@ fieldset {
     padding: 0.5em;
 }
 
+.fieldsetFormSeuil {
+    padding: 1em;
+}
+
 form {
     display: grid;
     grid-template-columns: 1fr 1.5fr;

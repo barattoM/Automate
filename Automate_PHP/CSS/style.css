@@ -28,16 +28,19 @@ nav div{
     background-color: rgb(211, 203, 193);
    
     
-    }    
-    nav{
-        flex-direction: column;
-        list-style-type: none;
-        position: fixed; /* Make it stick, even on scroll */
-        width: 15%;
-        right: 0;
-        height: 10%; /* Full height */
-        /* overflow: auto; Enable scrolling if the sidenav has too much content */
-        }
+    }  
+  nav{
+    flex-direction: column;
+    list-style-type: none;
+    position: absolute; 
+    width: 15%;
+    right: 0; 
+    height: 20%; /* Full height */
+    /* margin-top: 10vh; */
+   
+
+    
+   }
 nav div:active{
         box-shadow: -2px -2px 3px var(--linkColor);
     }
@@ -51,6 +54,13 @@ footer{
 .demi{
     position: center
 } 
+
+.border{
+    border: 2px solid black;
+    padding: 1em;
+    background-color: whitesmoke;
+    box-shadow: 4px 4px 10px black;
+}
 
 .titre{
     font-family: 'Alfa Slab One', cursive;
@@ -73,12 +83,22 @@ font-family: 'Staatliches', cursive;
 #menu-burger.clicked .bar3 {-webkit-transform:rotate(45deg) translate(-8px, -8px); transform:rotate(45deg) translate(-8px, -8px);}
 
 /* Main menu (slide) */
-#menu {position:fixed; z-index:9999; right:0; top:auto; background:rgb(132, 194, 132);   ; padding:4em 2em; width:25%; min-height:100%; box-shadow:1px 0 1px #b5b9ab;}
+#menu {position:fixed;z-index:9999 ; right:0; top:auto; 
+    background:rgb(132, 194, 132);   ; 
+    padding:4em 2em; width:10%; min-height:100%;
+    box-shadow:1px 0 1px #b5b9ab;}
 #menu ul li {list-style:none;}
-#menu ul li a {display:block; color:rgb(37, 35, 35); text-decoration:none; font-weight:700; background:#bebebe; transition:background .5s; padding:1em; text-align:center; margin-bottom:.5em; box-shadow:1px 1px 0 rgb(185, 181, 181)}
-#menu ul li a:hover {background:rgb(132, 194, 132);   ; transition:background .5s;}
 
-#menu.visible {animation:.5s slideRight ease-in forwards; transition-delay:0;}
+#menu ul li a {display:block; color:rgb(37, 35, 35);
+     text-decoration:none; font-weight:700;
+      background:#bebebe; 
+      transition:background .9s; 
+      padding:1em; text-align:center;
+       margin-bottom:.5em; 
+       box-shadow:1px 1px 0 rgb(185, 181, 181)}
+#menu ul li a:hover {background:rgb(132, 194, 132);   ; transition:background .9s;}
+
+#menu.visible {animation:1s slideRight ease-in forwards; transition-delay:0;}
 #menu.invisible {animation:1s slideLeft ease-out forwards; transition-delay:0;}
 
 /* Animations pour le menu slide */
@@ -136,6 +156,43 @@ font-family: 'Staatliches', cursive;
     background-color: var(--bgc1);
 }
 
+nav div{
+    padding: 10px;
+    border: 1px solid;
+    margin: 0px;
+    box-shadow: 2px 2px 3px black;
+    background-color: rgb(211, 203, 193);
+   
+    
+    }  
+  nav{
+    flex-direction: column;
+    list-style-type: none;
+    position: fixed; /* Make it stick, even on scroll */
+    width: 15%;
+    right: 0;
+     height: 10%; /*Full height */
+    /* overflow: auto; Enable scrolling if the sidenav has too much content */
+    }
+nav div:active{
+        box-shadow: -2px -2px 3px black;
+    }
+    
+footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color:rgb(132, 194, 132);
+}
+.demi{
+ position: center
+} 
+.titre{
+    font-family: cursive;
+   font-size: 30px;
+   position: center;
+   
+}
 
 
 
