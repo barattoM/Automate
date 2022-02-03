@@ -25,8 +25,8 @@ setcookie("lang", $_SESSION['lang'], time()+36000, '/');
 /******Fin des langues******/
 
 $routes=[
-	"Default"=>["PHP/VIEW/FORM/","FormConnexion","Connexion",0,false],
-	"Inscription"=>["PHP/VIEW/FORM/","FormInscription","Inscription",0,false],
+   "Default"=>["PHP/VIEW/FORM/","FormConnexion","Connexion",0,false],
+   "Inscription"=>["PHP/VIEW/FORM/","FormInscription","Inscription",0,false],
 	"Accueil"=>["PHP/VIEW/GENERAL/","Accueil","Accueil",0,false],
 
 	"ActionConnexion"=>["PHP/CONTROLLER/ACTION/","ActionConnexion","Action de la connexion",0,false],

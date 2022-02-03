@@ -130,7 +130,7 @@ INSERT INTO `afpa_couleurs` (`IdCouleur`, `Red`, `Green`, `Blue`) VALUES
 INSERT INTO `afpa_erreurs` (`IdErreur`, `MessageErreur`) VALUES
 (1, 'Luminosité trop basse '),
 (2, 'Son trop haut '),
-(3, 'Luminosité trop faible'),
+(3, 'Luminosité trop haute'),
 (4, 'Son trop bas'),
 (5, 'Température trop élevé. '),
 (6, 'Température trop basse. '),
@@ -148,8 +148,8 @@ INSERT INTO `afpa_lumieres` (`IdLumiere`, `ValeurLumiere`, `DateLumiere`) VALUES
 
 INSERT INTO `afpa_seuils` (`IdSeuil`, `SeuilBas`, `SeuilHaut`, `DateSeuil`, `Temps`,`Nature`) VALUES
 (1, 10, 30, '2022-02-01', 1,3),
-(2, 40, 150, '2022-02-02', 2,2),
-(3, 100, 1000, '2022-02-25', 1,1);
+(2, 73, 80, '2022-02-02', 2,2),
+(3, 21, 23, '2022-02-25', 1,1);
 
 INSERT INTO `afpa_sons` (`IdSon`, `ValeurSon`, `DateSon`) VALUES
 (1, 120, '2022-02-01 13:58:44'),
@@ -160,9 +160,9 @@ INSERT INTO `afpa_temperatures` (`IdTemperature`, `ValeurTemperature`, `DateTemp
 (2, '-3.0', '2022-02-01 14:57:57');
 
 
-INSERT INTO `afpa_objectifs` (`IdObjectif`, `Rendement`, `MaxNombreArretTemperature`,`MaxNombreArretDecibel`,`MaxPourcentDeclasses`) VALUES
-(1, 100, 4,5,60 ),
-(2, 200, 5,4,70);
+INSERT INTO `afpa_objectifs` (`IdObjectif`, `Rendement`, `MaxNombreArretTemperature`,`MaxNombreArretDecibel`,`MaxPourcentDeclasses`, `Date`) VALUES
+(1, 100, 4,5,60, '2022-02-15 10:00:00' ),
+(2, 200, 5,4,70, '2022-02-25 10:00:00');
 
 INSERT INTO `afpa_cadences` (`IdCadence`, `NbProduit`, `DateCadence`) VALUES
 (1, 100, '2022-02-01 14:20:30'),
