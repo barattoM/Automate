@@ -32,3 +32,12 @@ burgerMenu.addEventListener(clickedEvent, function(evt) {
 	}
 }, false);
 
+
+ inputDate = document.getElementById("date");
+ valider = document.getElementById("valider");
+
+ valider.addEventListener("click" , function(){
+	
+
+ });
+
