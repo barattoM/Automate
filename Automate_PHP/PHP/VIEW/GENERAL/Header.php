@@ -3,7 +3,9 @@
         <div class="demi Alan"></div>
         
         <div><img src="./IMG/pingouin.png" alt=""></div>
-        <div class="titre"><?php echo $titre; ?></div>
+       
+        
+ <div class="titre"><?php echo $titre; ?></div>
         <div class="colonne">
             <?php
 
