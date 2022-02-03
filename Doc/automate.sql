@@ -130,7 +130,7 @@ INSERT INTO `afpa_couleurs` (`IdCouleur`, `Red`, `Green`, `Blue`) VALUES
 INSERT INTO `afpa_erreurs` (`IdErreur`, `MessageErreur`) VALUES
 (1, 'Luminosité trop basse '),
 (2, 'Son trop haut '),
-(3, 'Luminosité trop faible'),
+(3, 'Luminosité trop haute'),
 (4, 'Son trop bas'),
 (5, 'Température trop élevé. '),
 (6, 'Température trop basse. '),
