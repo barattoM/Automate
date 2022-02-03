@@ -1,6 +1,4 @@
 .graphiqueAnomalie{
-    margin-left: 20em;
-    margin-right: 20em;
     border: 1px var(--linkColor) solid;
 
 }
@@ -350,6 +348,12 @@ align-self: center;
         align-self: center;
 }
 
+.Partie1{
+    border: 1px black solid;
+    box-shadow: 2px 2px 3px black;
+    background-color: #eeecec;
+    
+}
 /*****La touche alan*****/
 
 
@@ -381,6 +385,9 @@ align-self: center;
     90%      { color: hsl(288, 60%, 40%); }
   }
   
-
+.imggraph{
+    
+    background-size: cover;
+}
 
 
