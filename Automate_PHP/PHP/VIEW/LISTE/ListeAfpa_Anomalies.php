@@ -1,6 +1,6 @@
 <?php
 
-echo '<div class="bigEspace"></div>';
+
 echo '<div class="bigEspace"></div>';
  echo '<main class=colonne>';
 
@@ -34,11 +34,11 @@ echo '<select>
 echo '</div>';
 
 echo '<div class="bigEspace"></div>';
-echo '<div class="graphique center"> Anomalies Statistique Global </div>';
+echo '<div class="graphiqueAnomalie center"> Anomalies Statistique Global </div>';
 echo '<div></div>';
 echo '<div class="BIGEspace"></div>';
 
-
+//$uti =  Afpa_UtilisateursManager::getList(null, ['DateAnomalie' => ]);
 echo '<div class="grid-col-3">';
 echo '<div class="grid-columns-span-3 caseListe center"> Liste Anomalies Global </div>';
 echo '<div class="center caseListe">Type</div>';
