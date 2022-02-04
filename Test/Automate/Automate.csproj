@@ -183,6 +183,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controller\CouleursController.cs" />
+    <Compile Include="Controller\SeuilsController.cs" />
+    <Compile Include="Data\Model\Couleur.cs" />
+    <Compile Include="Data\Model\Lumiere.cs" />
+    <Compile Include="Data\Model\Seuil.cs" />
+    <Compile Include="Data\Model\Son.cs" />
+    <Compile Include="Data\Model\Temperature.cs" />
+    <Compile Include="Data\Services\DAO.cs" />
     <Compile Include="Imports.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -216,5 +224,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
