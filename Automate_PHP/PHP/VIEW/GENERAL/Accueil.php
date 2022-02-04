@@ -1,11 +1,25 @@
-
+<?php 
+    if ($_SESSION['utilisateur']->getRole() < 2) {
+        $displayNone = "noDisplay";
+    }else{
+        $displayNone = "";
+    }
+    $dateDuJour = new DateTime('Now');
+    $dateDuJour = $dateDuJour->format('Y-m-d')." 00:00:00";
+    $ordreDuJour = Afpa_ObjectifsManager::getList(null, ["Date"=>"$dateDuJour"]);
+    if ($ordreDuJour == null) {
+        $ordreDuJour = new Afpa_Objectifs(["Rendement" => 0,"MaxNombreArretTemperature" => 0,"MaxNombreArretDecibel" => 0,"MaxPourcentDeclasses" => 0]);
+    }else{
+        $ordreDuJour = $ordreDuJour[0];
+    }
+?>
 
 <div class="AccueilContenu">
     <div class="marge"></div>
 
     <div class="AccueilCentre">
 
-        <div class="AccueilPartie1">
+        <div class="AccueilPartie1 <?php echo $displayNone ?>">
 
             <div class="Objectif">
                 <h3>Objectif du jour</h3>
@@ -15,11 +29,11 @@
                             <div class="Espace04"></div>
                             <div class="txtNom">Rendement : </div>
                             <div class="Espace01"></div>
-                            <input type="text" id="inputR" name="inputR" required >
-                            <select name="RendementS " class="pourcent">
-                                <option value="heure">/h</option>
-                                <option value="minute">/min</option>
-                                <option value="jour">/jour</option>
+                            <input type="text" id="inputR" name="inputR" value="<?php echo $ordreDuJour->getRendement() ?>" disabled>
+                            <select name="RendementS" class="pourcent">
+                                <option value="1">/jour</option>
+                                <option value="24">/h</option>
+                                <option value="1440">/min</option>
                             </select>
                             <div class="Espace05"></div>
                         </div>
@@ -27,7 +41,7 @@
                             <div class="Espace04"></div>
                             <div class="txtNom">Déclassés : </div>
                             <div class="Espace01"></div>
-                            <input type="text" id="inputR" name="inputR" required >
+                            <input type="text" id="inputR" name="inputR" value="<?php echo $ordreDuJour->getMaxPourcentDeclasses() ?>" disabled>
                             <div class="Espace01"></div>
                             <div class="pourcent">%</div>
                         </div>
@@ -41,14 +55,14 @@
                                     <div class="Espace05"></div>
                                     <div class="txtNom">Cause Temperature : </div>
                                     <div class="Espace05"></div>
-                                    <input type="text" id="inputR" name="inputR" required >
+                                    <input type="text" id="inputR" name="inputR" value="<?php echo $ordreDuJour->getMaxNombreArretTemperature() ?>" disabled>
                             <div class="Espace05"></div>
                                 </div>
                                 <div class="contenuObjectif">
                                     <div class="Espace05"></div>
                                     <div class="txtNom">Cause sons : </div>
                                     <div class="Espace05"></div>
-                                    <input type="text" id="inputR" name="inputR" required >
+                                    <input type="text" id="inputR" name="inputR" value="<?php echo $ordreDuJour->getMaxNombreArretDecibel() ?>" disabled>
                             <div class="Espace05"></div>
 
                                 </div>
@@ -77,7 +91,7 @@
                     Temperatures statistique
                 </div>
                 <img src="IMG/diagramme.jpg" alt="">
-                <div class="infoGraph">
+                <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
@@ -90,7 +104,7 @@
                     Sons statistique
                 </div>
                 <img src="IMG/graph2.jpg" alt="">
-                <div class="infoGraph">
+                <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
@@ -102,7 +116,7 @@
                     Lumieres statistique
                 </div>
                 <img src="IMG/graph3.png" alt="">
-                <div class="infoGraph">
+                <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
@@ -114,7 +128,7 @@
                     Anomalies statistique
                 </div>
                 <img src="IMG/graph4.png" alt="">
-                <div class="infoGraph">
+                <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>

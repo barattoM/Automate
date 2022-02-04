@@ -5,7 +5,7 @@
 <?php 
 // echo $nom;
     if ($nom != "ListeAfpa_Anomalies") {
-        echo '<li><a href=?page=ListeAfpa_Anomalies">Anomalies</a><li>';
+        echo '<li><a href="?page=ListeAfpa_Anomalies">Anomalies</a><li>';
     }
     if ($nom != "ListeAfpa_Seuils" && $_SESSION['utilisateur']->getRole() > 1) {
         echo '<li><a href="?page=ListeAfpa_Seuils">Seuils</a><li>';

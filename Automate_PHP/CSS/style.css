@@ -215,10 +215,6 @@ flex : 10;
 }
 .AccueilPartie1{ 
 flex: 10;
-    display: flex ; 
-    
-    
-
 }
 
 .Objectif {
@@ -307,15 +303,9 @@ fieldset{
 }
 
 .AccueilPartie2{
-
-
-        display: flex;
         flex-wrap: wrap;
         /* pour prendre la place dont il a besoin */
-        justify-content: space-around;
-      
-    
-      
+        justify-content: space-around; 
 }
 .graphique{
     flex-direction: column;
@@ -324,7 +314,6 @@ fieldset{
     max-width: 25vw;
 	align-items: center;
 	display: flex;
-	
 	padding: 0.5em;
     margin: 2em; 
 	box-shadow: 3px 3px rgba(191, 194, 25, 0.637), -1em 0 .4em rgb(133, 197, 114);
