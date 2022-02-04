@@ -1,4 +1,6 @@
-﻿using Automate.Data.Model;
+﻿using Automate.Controller;
+using Automate.Data.Model;
+using Automate.Data.Services;
 using Interface_Carte_dAquisition_PicoDrDAQ;
 using MySql.Data.MySqlClient;
 using System;
@@ -36,22 +38,28 @@ namespace Automate
         int tempsAcquisition=3000; //En ms
 
         /* SEUILS */
-        float seuilHautSon;
-        float seuilBasSon;
-        float seuilHautTemperature;
-        float seuilBasTemperature;
-        float seuilHautLumiere;
-        float seuilBasLumiere;
+        Seuil SeuilTemperature;
+        Seuil SeuilSon;
+        Seuil SeuilLumiere;
+        //float seuilHautSon;
+        //float seuilBasSon;
+        //float seuilHautTemperature;
+        //float seuilBasTemperature;
+        //float seuilHautLumiere;
+        //float seuilBasLumiere;
 
         /* PENALITE TEMPS */
-        int tempsSon;
-        int tempsTemp;
+        //int tempsSon;
+        //int tempsTemp;
 
 
         /* COULEURS */
-        List<int> seuilBasCouleur = new List<int>();
-        List<int> seuilOKCouleur = new List<int>();
-        List<int> seuilHautCouleur = new List<int>();
+        Couleur seuilBasCouleur;
+        Couleur seuilOKCouleur;
+        Couleur seuilHautCouleur;
+        //List<int> seuilBasCouleur = new List<int>();
+        //List<int> seuilOKCouleur = new List<int>();
+        //List<int> seuilHautCouleur = new List<int>();
 
         /* Arret */
         bool arret = false;
@@ -62,8 +70,8 @@ namespace Automate
         List<string> tabDate = new List<string>();
         List<List<string>> tabAnomalies = new List<List<string>>();
         int TailleEnvoi = 2;
-        string conString = "Server=localhost;Database=automate;port=3306;UserId=root;password=";
-        MySqlConnection con; 
+        //string conString = "Server=localhost;Database=automate;port=3306;UserId=root;password=";
+        //MySqlConnection con;
 
         public MainWindow()
         {
@@ -71,7 +79,7 @@ namespace Automate
             InitializeComponent();
 
             //Connexion à la BDD
-            con = new MySqlConnection(this.conString);
+            //con = new MySqlConnection(this.conString);
 
             RecupCouleur();
             RecupSeuil();
@@ -98,15 +106,6 @@ namespace Automate
             string stringSon = Convert.ToString(Math.Round(Convert.ToDouble(son) / 10,2));
             float floatSon = (float) Math.Round(Convert.ToDouble(son) / 10,2);
             int resultSeuilSon = VerifSeuil(floatSon,"son");
-
-            Log.Text += "Seuil bas temperature :" + seuilBasTemperature
-                        + "\nSeuil haut temperature :" + seuilHautTemperature
-                        + "\nSeuil bas son :" + seuilBasSon
-                        + "\nSeuil haut son :" + seuilHautSon
-                        + "\nSeuil bas lumiere :" + seuilBasLumiere
-                        + "\nSeuil haut lumiere :" + seuilHautLumiere + "\n\n";
-
-            
 
             /* Temperature */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_TEMP, out temp, out overflow);
@@ -151,26 +150,26 @@ namespace Automate
             switch (resultSeuilTemp)
             {
                 case 1:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur[0], (byte)seuilHautCouleur[1], (byte)seuilHautCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
                     break;
                 case -1:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur[0], (byte)seuilBasCouleur[1], (byte)seuilBasCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
                     break;
                 default:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur[0], (byte)seuilOKCouleur[1], (byte)seuilOKCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
                     break;
             }
             //Log.Text += "\nRelevé température : " + stringTemp;
             switch (resultSeuilLum)
             {
                 case 1:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur[0], (byte)seuilHautCouleur[1], (byte)seuilHautCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
                     break;
                 case -1:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur[0], (byte)seuilBasCouleur[1], (byte)seuilBasCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
                     break;
                 default:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur[0], (byte)seuilOKCouleur[1], (byte)seuilOKCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
                     break;
             }
             //Log.Text += "\nRelevé lumière : " + stringLum;
@@ -178,17 +177,18 @@ namespace Automate
             switch (resultSeuilSon)
             {
                 case 1:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur[0], (byte)seuilHautCouleur[1], (byte)seuilHautCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
                     break;
                 case -1:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur[0], (byte)seuilBasCouleur[1], (byte)seuilBasCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
                     break;
                 default:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur[0], (byte)seuilOKCouleur[1], (byte)seuilOKCouleur[2])) });
+                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
                     break;
             }
             //Log.Text += "\nRelevé son : " + stringSon+"\n\n";
             //Log.Inlines.Add(new Run("text formatting ") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
+
             //On lance l'envoie à la base
 
             if (mesureSon.Count() == TailleEnvoi)
@@ -207,20 +207,20 @@ namespace Automate
                 {
                     if (resultSeuilSon > resultSeuilTemp) // On prend le temps de pause le plus grand
                     {
-                        pause(tempsSon * 60000);
+                        pause(SeuilSon.Temps* 60000);
                     } else
                     {
-                        pause(tempsTemp * 60000);
+                        pause(SeuilTemperature.Temps * 60000);
                     }
                 } else // s'il n'y a qu'une anomalie
                 {
                     if (resultSeuilSon != 0) // On prends le temps de pause de l'anomalie concernée.
                     {
-                        pause(tempsSon * 60000);
+                        pause(SeuilSon.Temps * 60000);
                     }
                     else
                     {
-                        pause(tempsTemp * 60000);
+                        pause(SeuilTemperature.Temps * 60000);
                     }
                 }
             }
@@ -260,8 +260,8 @@ namespace Automate
             string requeteTemperature = "INSERT INTO `afpa_temperatures`(`ValeurTemperature`, `DateTemperature`) VALUES ";
             for (int i=0;i< mesureLumiere.Count(); i++)
             {
-                requeteSon += "( "+mesureSon[i].Replace(",",".") + " , '"+tabDate[i]+ "') , ";
-                requeteLumiere += "( " + mesureLumiere[i].Replace(",", ".") + " , '" + tabDate[i] + "') , ";
+                requeteSon += "( "+mesureSon[i].ValSon.Replace(",",".") + " , '"+tabDate[i]+ "') , ";
+                requeteLumiere += "( " + mesureLumiere[i].ValLumiere.Replace(",", ".") + " , '" + tabDate[i] + "') , ";
                 requeteTemperature += "( " + mesureTemperature[i].ValTemperature.Replace(",", ".") + " , '" + tabDate[i] + "') , ";
             }
             requeteSon = requeteSon.Substring(0,requeteSon.Length-2);
@@ -373,46 +373,50 @@ namespace Automate
 
         private void RecupSeuil()
         {
-            // récupération des seuils
-            string requeteSeuilTemperature = "SELECT * FROM `afpa_seuils` WHERE nature = 1 ORDER BY `DateSeuil` DESC LIMIT 1;";
-            string requeteSeuilSon = "SELECT * FROM `afpa_seuils` WHERE nature = 2 ORDER BY `DateSeuil` DESC LIMIT 1;";
-            string requeteSeuilLumiere = "SELECT * FROM `afpa_seuils` WHERE nature = 3 ORDER BY `DateSeuil` DESC LIMIT 1;";
+            //// récupération des seuils
+            //string requeteSeuilTemperature = "SELECT * FROM `afpa_seuils` WHERE nature = 1 ORDER BY `DateSeuil` DESC LIMIT 1;";
+            //string requeteSeuilSon = "SELECT * FROM `afpa_seuils` WHERE nature = 2 ORDER BY `DateSeuil` DESC LIMIT 1;";
+            //string requeteSeuilLumiere = "SELECT * FROM `afpa_seuils` WHERE nature = 3 ORDER BY `DateSeuil` DESC LIMIT 1;";
 
-            // requete seuil temperature
-            MySqlCommand comTemperature = new MySqlCommand(requeteSeuilTemperature, con); // Association de la connexion avec la requete
-            con.Open(); // Ouverture de la connexion
-            MySqlDataReader reader = comTemperature.ExecuteReader(); //Envoie de la requête
-            reader.Read();
-            seuilBasTemperature = reader.GetFloat("SeuilBas");
-            seuilHautTemperature = reader.GetFloat("SeuilHaut");
-            tempsTemp = reader.GetInt32("Temps");
-            con.Close(); // Fermeture de la connexion
+            //// requete seuil temperature
+            //MySqlCommand comTemperature = new MySqlCommand(requeteSeuilTemperature, con); // Association de la connexion avec la requete
+            //con.Open(); // Ouverture de la connexion
+            //MySqlDataReader reader = comTemperature.ExecuteReader(); //Envoie de la requête
+            //reader.Read();
+            //seuilBasTemperature = reader.GetFloat("SeuilBas");
+            //seuilHautTemperature = reader.GetFloat("SeuilHaut");
+            //tempsTemp = reader.GetInt32("Temps");
+            //con.Close(); // Fermeture de la connexion
 
-            // requete seuil son
-            MySqlCommand comSon = new MySqlCommand(requeteSeuilSon, con); // Association de la connexion avec la requete
-            con.Open(); // Ouverture de la connexion
-            reader = comSon.ExecuteReader(); //Envoie de la requête
-            reader.Read();
-            seuilBasSon = reader.GetFloat("SeuilBas");
-            seuilHautSon = reader.GetFloat("SeuilHaut");
-            tempsSon = reader.GetInt32("Temps");
-            con.Close(); // Fermeture de la connexion
+            //// requete seuil son
+            //MySqlCommand comSon = new MySqlCommand(requeteSeuilSon, con); // Association de la connexion avec la requete
+            //con.Open(); // Ouverture de la connexion
+            //reader = comSon.ExecuteReader(); //Envoie de la requête
+            //reader.Read();
+            //seuilBasSon = reader.GetFloat("SeuilBas");
+            //seuilHautSon = reader.GetFloat("SeuilHaut");
+            //tempsSon = reader.GetInt32("Temps");
+            //con.Close(); // Fermeture de la connexion
 
-            // requete seuil lumiere
-            MySqlCommand comLumiere = new MySqlCommand(requeteSeuilLumiere, con); // Association de la connexion avec la requete
-            con.Open(); // Ouverture de la connexion
-            reader = comLumiere.ExecuteReader(); //Envoie de la requête
-            reader.Read();
-            seuilBasLumiere = reader.GetFloat("SeuilBas");
-            seuilHautLumiere = reader.GetFloat("SeuilHaut");
-            con.Close(); // Fermeture de la connexion
+            //// requete seuil lumiere
+            //MySqlCommand comLumiere = new MySqlCommand(requeteSeuilLumiere, con); // Association de la connexion avec la requete
+            //con.Open(); // Ouverture de la connexion
+            //reader = comLumiere.ExecuteReader(); //Envoie de la requête
+            //reader.Read();
+            //seuilBasLumiere = reader.GetFloat("SeuilBas");
+            //seuilHautLumiere = reader.GetFloat("SeuilHaut");
+            //con.Close(); // Fermeture de la connexion
 
-            Log.Text += "Seuil bas temperature :" + seuilBasTemperature
-                        +"\nSeuil haut temperature :" + seuilHautTemperature
-                        +"\nSeuil bas son :" + seuilBasSon
-                        +"\nSeuil haut son :" + seuilHautSon
-                        +"\nSeuil bas lumiere :" + seuilBasLumiere
-                        +"\nSeuil haut lumiere :" + seuilHautLumiere+ "\n\n";
+            SeuilTemperature= SeuilsController.getSeuils(1);
+            SeuilSon = SeuilsController.getSeuils(2);
+            SeuilLumiere = SeuilsController.getSeuils(3);
+
+            Log.Text += "Seuil bas temperature :" + SeuilTemperature.SeuilBas
+                        +"\nSeuil haut temperature :" + SeuilTemperature.SeuilHaut
+                        + "\nSeuil bas son :" + SeuilSon.SeuilBas
+                        + "\nSeuil haut son :" + SeuilSon.SeuilHaut
+                        + "\nSeuil bas lumiere :" + SeuilLumiere.SeuilBas
+                        + "\nSeuil haut lumiere :" + SeuilLumiere.SeuilHaut + "\n\n";
         }
 
         private int VerifSeuil(float value,string type)
@@ -420,30 +424,30 @@ namespace Automate
             switch (type)
             {
                 case "temp":
-                    if (value < seuilBasTemperature)
+                    if (value < SeuilTemperature.SeuilBas)
                     {
                         return -1;
-                    } else if (value > seuilHautTemperature)
+                    } else if (value > SeuilTemperature.SeuilHaut)
                     {
                         return 1;
                     }
                     return 0;
                 case "son":
-                    if (value < seuilBasSon)
+                    if (value < SeuilSon.SeuilBas)
                     {
                         return -1;
                     }
-                    else if (value > seuilHautSon)
+                    else if (value > SeuilSon.SeuilHaut)
                     {
                         return 1;
                     }
                     return 0;
                 case "lum":
-                    if (value < seuilBasLumiere)
+                    if (value < SeuilLumiere.SeuilBas)
                     {
                         return -1;
                     }
-                    else if (value > seuilHautLumiere)
+                    else if (value > SeuilLumiere.SeuilHaut)
                     {
                         return 1;
                     }
@@ -497,26 +501,30 @@ namespace Automate
 
         private void RecupCouleur()
         {
-            string requeteCouleur = "SELECT * FROM `afpa_couleurs`";
-            // requete seuil temperature
-            MySqlCommand comCouleur = new MySqlCommand(requeteCouleur, con); // Association de la connexion avec la requete
-            con.Open(); // Ouverture de la connexion
-            MySqlDataReader reader = comCouleur.ExecuteReader(); //Envoie de la requête
+            //string requeteCouleur = "SELECT * FROM `afpa_couleurs`";
+            //// requete seuil temperature
+            //MySqlCommand comCouleur = new MySqlCommand(requeteCouleur, con); // Association de la connexion avec la requete
+            //con.Open(); // Ouverture de la connexion
+            //MySqlDataReader reader = comCouleur.ExecuteReader(); //Envoie de la requête
 
 
-            reader.Read();
-            seuilBasCouleur.Add(reader.GetInt32("Red"));
-            seuilBasCouleur.Add(reader.GetInt32("Green"));
-            seuilBasCouleur.Add(reader.GetInt32("Blue"));
-            reader.Read();
-            seuilOKCouleur.Add(reader.GetInt32("Red"));
-            seuilOKCouleur.Add(reader.GetInt32("Green"));
-            seuilOKCouleur.Add(reader.GetInt32("Blue"));
-            reader.Read();
-            seuilHautCouleur.Add(reader.GetInt32("Red"));
-            seuilHautCouleur.Add(reader.GetInt32("Green"));
-            seuilHautCouleur.Add(reader.GetInt32("Blue"));
-            con.Close(); // Fermeture de la connexion
+            //reader.Read();
+            //seuilBasCouleur.Add(reader.GetInt32("Red"));
+            //seuilBasCouleur.Add(reader.GetInt32("Green"));
+            //seuilBasCouleur.Add(reader.GetInt32("Blue"));
+            //reader.Read();
+            //seuilOKCouleur.Add(reader.GetInt32("Red"));
+            //seuilOKCouleur.Add(reader.GetInt32("Green"));
+            //seuilOKCouleur.Add(reader.GetInt32("Blue"));
+            //reader.Read();
+            //seuilHautCouleur.Add(reader.GetInt32("Red"));
+            //seuilHautCouleur.Add(reader.GetInt32("Green"));
+            //seuilHautCouleur.Add(reader.GetInt32("Blue"));
+            //con.Close(); // Fermeture de la connexion
+            List<Couleur> c=CouleursController.getCouleurs();
+            seuilBasCouleur = c[0];
+            seuilOKCouleur = c[1];
+            seuilHautCouleur = c[2];
         }
         private async void pause(int temps)
         {
