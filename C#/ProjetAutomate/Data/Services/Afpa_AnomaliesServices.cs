@@ -37,9 +37,25 @@ namespace ProjetAutomate.Data.Services
             _context.SaveChanges();
         }
 
+
         public IEnumerable<Afpa_Anomalie> GetAllAfpa_Anomalies()
         {
             return _context.Afpa_Anomalies.Include("Erreur").ToList();
+        }
+
+        public IEnumerable<Afpa_Anomalie> GetAfpa_AnomaliesByType(string type)
+        {
+            return _context.Afpa_Anomalies.Where(a => a.TypeAnomalie == type).ToList();
+        }
+
+        public IEnumerable<Afpa_Anomalie> GetAfpa_AnomaliesByDate(DateTime date)
+        {
+            return _context.Afpa_Anomalies.Where(a => a.DateAnomalie.Date == date).ToList();
+        }
+        
+        public IEnumerable<Afpa_Anomalie> GetAfpa_AnomaliesByInterval(DateTime date1, DateTime date2)
+        {
+            return _context.Afpa_Anomalies.Where(a => a.DateAnomalie.Date >= date1 && a.DateAnomalie.Date <= date2).ToList();
         }
 
         public Afpa_Anomalie GetAfpa_AnomalieById(int id)

@@ -52,11 +52,6 @@ if(mainMenu.classList.contains("invisible")){
 }, false);
 
 
- inputDate = document.getElementById("date");
- valider = document.getElementById("valider");
-
- valider.addEventListener("click" , function(){
 	
 
- });
 

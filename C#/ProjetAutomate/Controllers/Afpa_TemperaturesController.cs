@@ -32,6 +32,14 @@ namespace ProjetAutomate.Controllers
             return Ok(_mapper.Map<IEnumerable<Afpa_TemperaturesDTOOut>>(listeAfpa_Temperatures));
         }
 
+        //GET api/Afpa_Temperatures/ByInterval
+        [HttpGet("ByInterval", Name = "GetAfpa_TemperaturesByInterval")]
+        public ActionResult<IEnumerable<Afpa_TemperaturesDTOOut>> GetAfpa_TemperaturesByDate(DateTime date1, DateTime date2)
+        {
+            IEnumerable<Afpa_Temperature> listeAfpa_Temperatures = _service.GetAfpa_TemperaturesByInterval(date1, date2);
+            return Ok(_mapper.Map<IEnumerable<Afpa_TemperaturesDTOOut>>(listeAfpa_Temperatures));
+        }
+
         //GET api/Afpa_Temperatures/{i}
         [HttpGet("{id}", Name = "GetAfpa_TemperatureById")]
         public ActionResult<Afpa_TemperaturesDTOOut> GetAfpa_TemperatureById(int id)
