@@ -1,4 +1,5 @@
-﻿using Interface_Carte_dAquisition_PicoDrDAQ;
+﻿using Automate.Data.Model;
+using Interface_Carte_dAquisition_PicoDrDAQ;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -55,9 +56,9 @@ namespace Automate
         /* Arret */
         bool arret = false;
 
-        List<string> mesureTemperature = new List<string>();
-        List<string> mesureSon = new List<string>();
-        List<string> mesureLumiere = new List<string>();
+        List<Temperature> mesureTemperature = new List<Temperature>();
+        List<Son> mesureSon = new List<Son>();
+        List<Lumiere> mesureLumiere = new List<Lumiere>();
         List<string> tabDate = new List<string>();
         List<List<string>> tabAnomalies = new List<List<string>>();
         int TailleEnvoi = 2;
@@ -125,14 +126,14 @@ namespace Automate
 
             if (arret)
             {
-                mesureSon.Add("0");
-                mesureTemperature.Add("0");
-                mesureLumiere.Add("0");
+                mesureSon.Add(new Son("0"));
+                mesureTemperature.Add(new Temperature("0"));
+                mesureLumiere.Add(new Lumiere("0"));
             } else
             {
-                mesureSon.Add(stringSon);
-                mesureTemperature.Add(stringTemp);
-                mesureLumiere.Add(stringLum);
+                mesureSon.Add(new Son(stringSon));
+                mesureTemperature.Add(new Temperature(stringTemp));
+                mesureLumiere.Add(new Lumiere(stringLum));
             }
             
 
@@ -261,7 +262,7 @@ namespace Automate
             {
                 requeteSon += "( "+mesureSon[i].Replace(",",".") + " , '"+tabDate[i]+ "') , ";
                 requeteLumiere += "( " + mesureLumiere[i].Replace(",", ".") + " , '" + tabDate[i] + "') , ";
-                requeteTemperature += "( " + mesureTemperature[i].Replace(",", ".") + " , '" + tabDate[i] + "') , ";
+                requeteTemperature += "( " + mesureTemperature[i].ValTemperature.Replace(",", ".") + " , '" + tabDate[i] + "') , ";
             }
             requeteSon = requeteSon.Substring(0,requeteSon.Length-2);
             requeteLumiere = requeteLumiere.Substring(0, requeteLumiere.Length - 2);

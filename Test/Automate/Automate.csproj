@@ -183,6 +183,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Model\Lumiere.cs" />
+    <Compile Include="Data\Model\Son.cs" />
+    <Compile Include="Data\Model\Temperature.cs" />
+    <Compile Include="Data\Services\DAO.cs" />
     <Compile Include="Imports.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -215,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
