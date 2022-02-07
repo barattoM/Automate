@@ -71,7 +71,7 @@ namespace Automate
         List<List<string>> tabAnomalies = new List<List<string>>();
         int TailleEnvoi = 2;
         //string conString = "Server=localhost;Database=automate;port=3306;UserId=root;password=";
-        //MySqlConnection con;
+        MySqlConnection con;
 
         public MainWindow()
         {
@@ -88,10 +88,10 @@ namespace Automate
             Imports.OpenUnit(out handle);
             Imports.Run(handle, echantillonnage, Imports._BLOCK_METHOD.BM_STREAM);
             /* Acquisition périodique */
-            System.Windows.Threading.DispatcherTimer Son = new System.Windows.Threading.DispatcherTimer();
-            Son.Tick += Acquisitions;
-            Son.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
-            Son.Start();
+            System.Windows.Threading.DispatcherTimer Aquisition = new System.Windows.Threading.DispatcherTimer();
+            Aquisition.Tick += Acquisitions;
+            Aquisition.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
+            Aquisition.Start();
         }
 
         public void Acquisitions(object sender, EventArgs e)
