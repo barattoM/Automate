@@ -41,25 +41,11 @@ namespace Automate
         Seuil SeuilTemperature;
         Seuil SeuilSon;
         Seuil SeuilLumiere;
-        //float seuilHautSon;
-        //float seuilBasSon;
-        //float seuilHautTemperature;
-        //float seuilBasTemperature;
-        //float seuilHautLumiere;
-        //float seuilBasLumiere;
-
-        /* PENALITE TEMPS */
-        //int tempsSon;
-        //int tempsTemp;
-
 
         /* COULEURS */
         Couleur seuilBasCouleur;
         Couleur seuilOKCouleur;
         Couleur seuilHautCouleur;
-        //List<int> seuilBasCouleur = new List<int>();
-        //List<int> seuilOKCouleur = new List<int>();
-        //List<int> seuilHautCouleur = new List<int>();
 
         /* Arret */
         bool arret = false;
@@ -69,34 +55,36 @@ namespace Automate
         List<Lumiere> mesureLumiere = new List<Lumiere>();
         List<string> tabDate = new List<string>();
         List<List<string>> tabAnomalies = new List<List<string>>();
+
+        /* Paramètre */
         int TailleEnvoi = 2;
-        //string conString = "Server=localhost;Database=automate;port=3306;UserId=root;password=";
-        MySqlConnection con;
 
         public MainWindow()
         {
 
             InitializeComponent();
 
-            //Connexion à la BDD
-            //con = new MySqlConnection(this.conString);
-
+            // Récupération des couleurs de seuils et des valeurs des seuils
             RecupCouleur();
             RecupSeuil();
-
             //Ouverture des acquisitions
             Imports.OpenUnit(out handle);
             Imports.Run(handle, echantillonnage, Imports._BLOCK_METHOD.BM_STREAM);
             /* Acquisition périodique */
             System.Windows.Threading.DispatcherTimer Aquisition = new System.Windows.Threading.DispatcherTimer();
-            Aquisition.Tick += Acquisitions;
-            Aquisition.Interval = TimeSpan.FromMilliseconds(tempsAcquisition);
+            Aquisition.Tick += Acquisitions; //Fonction à lancer à chaque interval
+            Aquisition.Interval = TimeSpan.FromMilliseconds(tempsAcquisition); //Definition de l'Interval 
             Aquisition.Start();
         }
 
+        /// <summary>
+        /// Gère l'acquisition des données relevées grâce à la carte d'aquisition.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void Acquisitions(object sender, EventArgs e)
         {
-            //Création de la date du jour (on le gère ici seulement car les 3 relevées sont simultanée)
+            //Création de la date du jour
             string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             tabDate.Add(date);
 
@@ -105,30 +93,31 @@ namespace Automate
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_MIC_LEVEL, out son, out overflow);
             string stringSon = Convert.ToString(Math.Round(Convert.ToDouble(son) / 10,2));
             float floatSon = (float) Math.Round(Convert.ToDouble(son) / 10,2);
-            int resultSeuilSon = VerifSeuil(floatSon,"son");
+            int resultSeuilSon = VerifSeuil(floatSon,"son"); // On vérifie que la valeur du son est OK
 
             /* Temperature */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_TEMP, out temp, out overflow);
             string stringTemp = Convert.ToString(Math.Round(temp * 0.088,2));
             float floatTemp = (float) Math.Round(temp * 0.088,2);
-            int resultSeuilTemp = VerifSeuil(floatTemp, "temp");
-            
+            int resultSeuilTemp = VerifSeuil(floatTemp, "temp"); // On vérifie que la valeur de la température est OK
+
 
             /* Lumière */
             Imports.GetSingle(handle, Imports.Inputs.USB_DRDAQ_CHANNEL_LIGHT, out lum, out overflow);
             string stringLum = Convert.ToString(Math.Round(Convert.ToDouble(lum) / 10,2));
             float floatLum = (float) Math.Round(Convert.ToDouble(lum) / 10,2); 
-            int resultSeuilLum = VerifSeuil(floatLum, "lum");
-           
+            int resultSeuilLum = VerifSeuil(floatLum, "lum"); // On vérifie que la valeur de la lumière est OK
 
 
 
-            if (arret)
+            /* Ajout des valeurs dans le tableau */
+
+            if (arret) // Si on est en arret alors on ajoute des valeurs à 0 (machine non opérationnelle)
             {
                 mesureSon.Add(new Son("0"));
                 mesureTemperature.Add(new Temperature("0"));
                 mesureLumiere.Add(new Lumiere("0"));
-            } else
+            } else // Sinon on ajoute les valeurs relevées par les capteurs
             {
                 mesureSon.Add(new Son(stringSon));
                 mesureTemperature.Add(new Temperature(stringTemp));
@@ -137,72 +126,72 @@ namespace Automate
             
 
 
-            // Gestion des anomalies 
-            CheckAnomalies(resultSeuilTemp,"temp",date);
-            CheckAnomalies(resultSeuilSon, "son", date);
-            CheckAnomalies(resultSeuilLum, "lum", date);
+            /* Gestion des anomalies */
+            CheckAnomalies(resultSeuilTemp,"temp",date); // Ajoute l'anomalie de température, si il y en a une, aux tableaux d'anomalie 
+            CheckAnomalies(resultSeuilSon, "son", date); // Ajoute l'anomalie de son, si il y en a une, aux tableaux d'anomalie 
+            CheckAnomalies(resultSeuilLum, "lum", date); // Ajoute l'anomalie de lumière, si il y en a une, aux tableaux d'anomalie 
 
 
-
+            /* Gestion de l'affichage */
             //On affiche les logs sur la fenetre AVEC LES COULEURS
-            Log.Text += date;
-
-            switch (resultSeuilTemp)
-            {
-                case 1:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
-                    break;
-                case -1:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
-                    break;
-                default:
-                    Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
-                    break;
+            if (!arret) { // On affiche pas les valeurs relevées si on est en arret
+                Log.Text += date;
+                //Changement de la couleur pour la ligne de température
+                switch (resultSeuilTemp)
+                {
+                    case 1: // Valeur au dessus du seuil haut
+                        Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
+                        break;
+                    case -1: // Valeur en dessous du seuil bas
+                        Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
+                        break;
+                    default: // Valeur OK
+                        Log.Inlines.Add(new Run("\nRelevé température : " + stringTemp) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
+                        break;
+                }
+                //Changement de la couleur pour la ligne de lumière
+                switch (resultSeuilLum)
+                {
+                    case 1: // Valeur au dessus du seuil haut
+                        Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
+                        break;
+                    case -1: // Valeur en dessous du seuil bas
+                        Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
+                        break;
+                    default: // Valeur ok
+                        Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
+                        break;
+                }
+                //Changement de la couleur pour la ligne du son                
+                switch (resultSeuilSon)
+                {
+                    case 1: // Valeur au dessus du seuil haut
+                        Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
+                        break;
+                    case -1: // Valeur en dessous du seuil bas
+                        Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
+                        break;
+                    default: // Valeur OK
+                        Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
+                        break;
+                }
             }
-            //Log.Text += "\nRelevé température : " + stringTemp;
-            switch (resultSeuilLum)
-            {
-                case 1:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
-                    break;
-                case -1:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
-                    break;
-                default:
-                    Log.Inlines.Add(new Run("\nRelevé lumière : " + stringLum) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
-                    break;
-            }
-            //Log.Text += "\nRelevé lumière : " + stringLum;
-                            
-            switch (resultSeuilSon)
-            {
-                case 1:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon + "\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilHautCouleur.Red, (byte)seuilHautCouleur.Green, (byte)seuilHautCouleur.Blue)) });
-                    break;
-                case -1:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilBasCouleur.Red, (byte)seuilBasCouleur.Green, (byte)seuilBasCouleur.Blue)) });
-                    break;
-                default:
-                    Log.Inlines.Add(new Run("\nRelevé son : " + stringSon+"\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb((byte)seuilOKCouleur.Red, (byte)seuilOKCouleur.Green, (byte)seuilOKCouleur.Blue)) });
-                    break;
-            }
-            //Log.Text += "\nRelevé son : " + stringSon+"\n\n";
-            //Log.Inlines.Add(new Run("text formatting ") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
-
-            //On lance l'envoie à la base
-
+            /* Gestion de l'envoi en base de doonées */
+           
+            //On lance l'envoie à la base si la taille de l'envoi est atteint
             if (mesureSon.Count() == TailleEnvoi)
             {
                 EnvoieBase();
             }
 
+            //Si il y a eu une anomalie sur le son ou sur la température alors on arrete la production (si elle n'est pas déja arreté) et on envoi en base les données déja récolté avant l'anomalie
             if (resultSeuilSon != 0 || resultSeuilTemp != 0 && !arret)
             {
-                Log.Text += "*** PAUSE ***";
-                arret = true;
+                Log.Text += "*** PAUSE ***"; // Affichage de l'arret de production
+                arret = true; // Production arreté
                 EnvoieBase();
 
-                // On fait une pause en fonction du temmps d'arret proposé dans le seuil.
+                // On fait une pause en fonction du temps d'arret proposé dans le seuil.
                 if (resultSeuilSon != 0 && resultSeuilTemp != 0) // Si il ya deux anomalies en même temps
                 {
                     if (resultSeuilSon > resultSeuilTemp) // On prend le temps de pause le plus grand
@@ -227,117 +216,52 @@ namespace Automate
 
         }
 
+        /// <summary>
+        /// Gère l'envoie des données en base.
+        /// </summary>
         private void EnvoieBase()
         {
-           
-            int cadence = 0;
-
-            /*Cadence*/
+            /* Gestion de la cadence */
+            int cadence = 0; // Initialisation de la cadence à 0
             Random rand = new Random();
+            // Crée une cadence aléatoire si on est pas en arret
             if (!arret)
             {
-                cadence = rand.Next(100, 300);
+                cadence = rand.Next(100, 300); 
             }
 
-            string requeteCadence = "";
-            if (tabDate.Count != 0)
+            //On crée la date pour la cadence
+            string date = "";
+            if (tabDate.Count != 0) // Il y a eu des relevés effectués, alors on prend la date du dernier relevé des données à envoyer
             {
-                requeteCadence = "INSERT INTO `afpa_cadences`( `NbProduit`, `DateCadence`) VALUES(" + cadence + ",'" + tabDate[tabDate.Count() - 1] + "')";
-            } else
+                date = tabDate[tabDate.Count() - 1];
+            }
+            else//Si il n'y a pas encore eu de relevé alors on met la date d'aujourd'hui (arret dès le 1er relevé)
             {
-                requeteCadence = "INSERT INTO `afpa_cadences`( `NbProduit`, `DateCadence`) VALUES(" + cadence + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
+                date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); 
             }
 
+            CadencesController.PostCadence(cadence, date); // Envoie de la cadence en base
 
-            MySqlCommand comCad = new MySqlCommand(requeteCadence, con);
-            con.Open();
-            comCad.ExecuteReader();
-            con.Close();
-
-            //Création des requêtes
-            string requeteSon = "INSERT INTO `afpa_sons`(`ValeurSon`, `DateSon`) VALUES ";
-            string requeteLumiere = "INSERT INTO `afpa_lumieres`(`ValeurLumiere`, `DateLumiere`) VALUES ";
-            string requeteTemperature = "INSERT INTO `afpa_temperatures`(`ValeurTemperature`, `DateTemperature`) VALUES ";
-            for (int i=0;i< mesureLumiere.Count(); i++)
+            /* Gestion des relevés */
+            if (mesureSon.Count != 0) //Si il y a des relevés alors on les envoies en base
             {
-                requeteSon += "( "+mesureSon[i].ValSon.Replace(",",".") + " , '"+tabDate[i]+ "') , ";
-                requeteLumiere += "( " + mesureLumiere[i].ValLumiere.Replace(",", ".") + " , '" + tabDate[i] + "') , ";
-                requeteTemperature += "( " + mesureTemperature[i].ValTemperature.Replace(",", ".") + " , '" + tabDate[i] + "') , ";
+                SonsController.PostSon(mesureSon,tabDate);
+                LumieresController.PostLumiere(mesureLumiere, tabDate);
+                TemperaturesController.PostTemperature(mesureTemperature, tabDate);
+                //Affichage de l'envoie en base à l'écran
+                Log.Text += "\n*******************************" +
+                            "\n*         Envoi en Base ...         *" +
+                            "\n*******************************\n\n";
             }
-            requeteSon = requeteSon.Substring(0,requeteSon.Length-2);
-            requeteLumiere = requeteLumiere.Substring(0, requeteLumiere.Length - 2);
-            requeteTemperature = requeteTemperature.Substring(0, requeteTemperature.Length - 2);
-            requeteSon += ";";
-            requeteLumiere += ";";
-            requeteTemperature += ";";
-
-            // creation des requetes anomalies
-            string requeteAnomalie = "INSERT INTO `afpa_anomalies`(`DateAnomalie`, `TypeAnomalie`, `NbDeclasses`, `IdErreur`) VALUES ";
-
-
-            foreach(List<string> anomalie in tabAnomalies)
+            /* Gestion des anomalies */
+            if (tabAnomalies.Count() != 0) // Si il y a des anomalies alors on les envoies en base
             {
-                if (anomalie[1] == "lumiere")
-                {
-                // Si la cadence est a 0 soit la production est en pause, on met le nombre de declassé a 0 puisque le rand commence a 1 et cadence = 0; 
-                if (cadence == 0)
-                {
-                    requeteAnomalie += " ( '" + anomalie[0] + "' , '" + anomalie[1] + "' , '0' , '" + anomalie[3] + "') , ";
-                } else
-                {
-                    requeteAnomalie += " ( '" + anomalie[0] + "' , '" + anomalie[1] + "' , '" + rand.Next(1, (cadence / 2)) + "' , '" + anomalie[3] + "') , ";
-                }
-
-
-            } else
-                {
-                    requeteAnomalie += " ( '" + anomalie[0] + "' , '" + anomalie[1] + "' , '" + anomalie[2] + "' , '" + anomalie[3] + "') , ";
-                }
-            }
-            requeteAnomalie = requeteAnomalie.Substring(0, requeteAnomalie.Length - 2);
-            requeteAnomalie += ";";
-                
-
-
-            if (mesureSon.Count != 0)
-            { 
-                //On crée la requête lié à la connexion, puis on ouvre la connexion à la base de données et on exécute la requêtes avant de fermer la connexion à la BDD pour laisser la place autre requête de se faire
-                /*Son*/
-                MySqlCommand comSon = new MySqlCommand(requeteSon, con); // Association de la connexion avec la requete
-
-                con.Open(); // Ouverture de la connexion
-                comSon.ExecuteReader(); //Envoie de la requête
-                con.Close(); // Fermeture de la connexion
-
-                /*Lumiere*/
-                MySqlCommand comLum = new MySqlCommand(requeteLumiere, con);
-                con.Open();
-                comLum.ExecuteReader();
-                con.Close();
-
-                /*Temperature*/
-                MySqlCommand comTem = new MySqlCommand(requeteTemperature, con);
-                con.Open();
-                comTem.ExecuteReader();
-                con.Close();
-
-                    Log.Text += "\n*******************************" +
-                  "\n*         Envoi en Base ...         *" +
-                  "\n*******************************\n\n";
-            }
-            /*Anomalie*/
-            if (tabAnomalies.Count() != 0)
-            {
-                MySqlCommand comAno = new MySqlCommand(requeteAnomalie, con);
-                con.Open();
-                comAno.ExecuteReader();
-                con.Close();
+                AnomaliesController.PostAnomalies(tabAnomalies,cadence);
             }
 
-               
-
-          
-            //On remet les tableaux de données à zéro
+            /* Gestion des tableaux de données */
+            //On remet les tableaux de données à zéro pour pouvoir reprendre l'aquisition des données pour une nouvelle tranche
             mesureSon.Clear();
             mesureLumiere.Clear();
             mesureTemperature.Clear();
@@ -346,6 +270,11 @@ namespace Automate
 
         }
 
+        /// <summary>
+        /// Auto scroll de la fenêtre de log
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             // User scroll event : set or unset auto-scroll mode
@@ -371,42 +300,11 @@ namespace Automate
             }
         }
 
+        /// <summary>
+        /// Gère la récupération des seuils pour la température, le son et la lumière . Affiche également ces valeurs, au lancement, dans les logs
+        /// </summary>
         private void RecupSeuil()
         {
-            //// récupération des seuils
-            //string requeteSeuilTemperature = "SELECT * FROM `afpa_seuils` WHERE nature = 1 ORDER BY `DateSeuil` DESC LIMIT 1;";
-            //string requeteSeuilSon = "SELECT * FROM `afpa_seuils` WHERE nature = 2 ORDER BY `DateSeuil` DESC LIMIT 1;";
-            //string requeteSeuilLumiere = "SELECT * FROM `afpa_seuils` WHERE nature = 3 ORDER BY `DateSeuil` DESC LIMIT 1;";
-
-            //// requete seuil temperature
-            //MySqlCommand comTemperature = new MySqlCommand(requeteSeuilTemperature, con); // Association de la connexion avec la requete
-            //con.Open(); // Ouverture de la connexion
-            //MySqlDataReader reader = comTemperature.ExecuteReader(); //Envoie de la requête
-            //reader.Read();
-            //seuilBasTemperature = reader.GetFloat("SeuilBas");
-            //seuilHautTemperature = reader.GetFloat("SeuilHaut");
-            //tempsTemp = reader.GetInt32("Temps");
-            //con.Close(); // Fermeture de la connexion
-
-            //// requete seuil son
-            //MySqlCommand comSon = new MySqlCommand(requeteSeuilSon, con); // Association de la connexion avec la requete
-            //con.Open(); // Ouverture de la connexion
-            //reader = comSon.ExecuteReader(); //Envoie de la requête
-            //reader.Read();
-            //seuilBasSon = reader.GetFloat("SeuilBas");
-            //seuilHautSon = reader.GetFloat("SeuilHaut");
-            //tempsSon = reader.GetInt32("Temps");
-            //con.Close(); // Fermeture de la connexion
-
-            //// requete seuil lumiere
-            //MySqlCommand comLumiere = new MySqlCommand(requeteSeuilLumiere, con); // Association de la connexion avec la requete
-            //con.Open(); // Ouverture de la connexion
-            //reader = comLumiere.ExecuteReader(); //Envoie de la requête
-            //reader.Read();
-            //seuilBasLumiere = reader.GetFloat("SeuilBas");
-            //seuilHautLumiere = reader.GetFloat("SeuilHaut");
-            //con.Close(); // Fermeture de la connexion
-
             SeuilTemperature= SeuilsController.getSeuils(1);
             SeuilSon = SeuilsController.getSeuils(2);
             SeuilLumiere = SeuilsController.getSeuils(3);
@@ -418,7 +316,17 @@ namespace Automate
                         + "\nSeuil bas lumiere :" + SeuilLumiere.SeuilBas
                         + "\nSeuil haut lumiere :" + SeuilLumiere.SeuilHaut + "\n\n";
         }
-
+        
+        /// <summary>
+        /// Vérifie si les valeurs relevées sont dans les seuils.
+        /// </summary>
+        /// <param name="value"> La valeur à tester </param>
+        /// <param name="type"> Le type de relevé (temp, son , lum) </param>
+        /// <returns>
+        /// 1 si la valeur est au dessus du seuil haut <br/>
+        /// -1 si la valeur est en dessous du seuil bas <br/>
+        /// 0 si la valeur est OK
+        /// </returns>
         private int VerifSeuil(float value,string type)
         {
             switch (type)
@@ -458,6 +366,12 @@ namespace Automate
 
         }
 
+        /// <summary>
+        /// Vérifie si il y a une anomalie, si il y en a une, alors l'ajoute au tableau d'anomalies.
+        /// </summary>
+        /// <param name="value">Valeur retournée par la fonction VerifSeuil (1,0,-1)</param>
+        /// <param name="type">Le type de relevé (temp, son , lum)</param>
+        /// <param name="date">Date du relevé de l'anomalie</param>
         private void CheckAnomalies(int value, string type, string date)
         {
           
@@ -499,37 +413,26 @@ namespace Automate
 
         }
 
+        /// <summary>
+        /// Récupère les couleurs des différents seuils
+        /// </summary>
         private void RecupCouleur()
         {
-            //string requeteCouleur = "SELECT * FROM `afpa_couleurs`";
-            //// requete seuil temperature
-            //MySqlCommand comCouleur = new MySqlCommand(requeteCouleur, con); // Association de la connexion avec la requete
-            //con.Open(); // Ouverture de la connexion
-            //MySqlDataReader reader = comCouleur.ExecuteReader(); //Envoie de la requête
-
-
-            //reader.Read();
-            //seuilBasCouleur.Add(reader.GetInt32("Red"));
-            //seuilBasCouleur.Add(reader.GetInt32("Green"));
-            //seuilBasCouleur.Add(reader.GetInt32("Blue"));
-            //reader.Read();
-            //seuilOKCouleur.Add(reader.GetInt32("Red"));
-            //seuilOKCouleur.Add(reader.GetInt32("Green"));
-            //seuilOKCouleur.Add(reader.GetInt32("Blue"));
-            //reader.Read();
-            //seuilHautCouleur.Add(reader.GetInt32("Red"));
-            //seuilHautCouleur.Add(reader.GetInt32("Green"));
-            //seuilHautCouleur.Add(reader.GetInt32("Blue"));
-            //con.Close(); // Fermeture de la connexion
             List<Couleur> c=CouleursController.getCouleurs();
             seuilBasCouleur = c[0];
             seuilOKCouleur = c[1];
             seuilHautCouleur = c[2];
         }
+
+        /// <summary>
+        /// Fonction qui permet de mettre en pause la production pour un temps donnée.
+        /// </summary>
+        /// <param name="temps">Temps de la pause en ms</param>
         private async void pause(int temps)
         {
             await Task.Delay(temps);
             Log.Text += "FIN PAUSE\n";
+            arret = false;
         }
     }
    

@@ -22,11 +22,13 @@ namespace Automate.Data.Services
             con.Close();
         }
 
-        /**
-         * param name="requete" La requete SQL
-         * param name="nbColonnes" le nombre de colonnes dans la table (id inclue)
-         *  returns Tableau contenant les données pour chaque colonnes (id exclue)
-         */
+        
+        /// <summary>
+        /// Recupère les données en base de données grâce à la requête en paramètre.
+        /// </summary>
+        /// <param name="requete">La requête à envoyer en base</param>
+        /// <param name="nbColonnes">Le nombre de colonnes dans la tables (avec id)</param>
+        /// <returns>Tableau contenant les données (sauf id) dans le même ordre que dans la base</returns>
         static public List<List<object>> Get(string requete, int nbColonnes)
         {
             MySqlCommand com = new MySqlCommand(requete, con);
@@ -46,7 +48,11 @@ namespace Automate.Data.Services
             return tab;
         }
 
-        static public void Set(string requete)
+        /// <summary>
+        /// Envoi les données en base.
+        /// </summary>
+        /// <param name="requete">La requête à envoyer en base</param>
+        static public void Post(string requete)
         {
             MySqlCommand com = new MySqlCommand(requete, con);
             Connexion();
