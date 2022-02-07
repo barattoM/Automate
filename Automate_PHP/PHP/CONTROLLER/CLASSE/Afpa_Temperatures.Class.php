@@ -17,7 +17,7 @@ class Afpa_Temperatures
 		return $this->_IdTemperature;
 	}
 
-	public function setIdTemperature(int $IdTemperature)
+	public function setIdTemperature(?int $IdTemperature)
 	{
 		$this->_IdTemperature=$IdTemperature;
 	}

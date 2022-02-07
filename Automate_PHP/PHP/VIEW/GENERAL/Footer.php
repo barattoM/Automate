@@ -17,11 +17,13 @@
     }
  }else if($page[1] == "Accueil"){
     echo '<script src="./JS/Graph/GraphSons.js"></script>';
+    echo '<script src="./JS/Graph/GraphTemps.js"></script>';
     if($_SESSION['utilisateur']->getRole() > 1){
     echo '<script src="./JS/Graph/Seuil.js"></script>';
     echo '<script src="./JS/Accueil/SelectRendement.js"></script>';
     }
  }
  echo ' <script src="./JS/script.js"></script>';
+ echo '<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>';
 echo '</body>
 </html>';
