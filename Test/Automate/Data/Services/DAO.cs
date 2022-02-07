@@ -22,13 +22,28 @@ namespace Automate.Data.Services
             con.Close();
         }
 
-        static public MySqlDataReader Get(string requete)
+        /**
+         * param name="requete" La requete SQL
+         * param name="nbColonnes" le nombre de colonnes dans la table (id inclue)
+         *  returns Tableau contenant les données pour chaque colonnes (id exclue)
+         */
+        static public List<List<object>> Get(string requete, int nbColonnes)
         {
             MySqlCommand com = new MySqlCommand(requete, con);
             Connexion();
             MySqlDataReader reader = com.ExecuteReader();
+            List<List<object>> tab = new List<List<object>>();
+            while (reader.Read())
+            {
+                List<object> donnees = new List<object>();
+                for (int i=1;i<nbColonnes;i++)
+                {
+                    donnees.Add(reader.GetValue(i));
+                }
+                tab.Add(donnees);
+            }
             Deconnexion();
-            return reader;
+            return tab;
         }
 
         static public void Set(string requete)

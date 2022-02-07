@@ -16,12 +16,9 @@ namespace Automate.Controller
         public static Seuil getSeuils(int nature)
         {
             string requete = "SELECT * FROM `afpa_seuils` WHERE nature = "+nature+" ORDER BY `DateSeuil` DESC LIMIT 1;";
-            MySqlDataReader donnees =DAO.Get(requete);
-            Seuil seuil = new Seuil();
-            donnees.Read();
-            seuil.SeuilBas = donnees.GetFloat("SeuilBas");
-            seuil.SeuilHaut = donnees.GetFloat("SeuilHaut");
-            seuil.Temps = donnees.GetInt32("Temps");
+            List<List<object>> donnees =DAO.Get(requete,6);
+            //donnees[0][0] : seuilBas ; donnees[0][1] : SeuilHaut ; donnees[0][3] : Temps
+            Seuil seuil = new Seuil((float)donnees[0][0], (float)donnees[0][1], (int)donnees[0][3]);
             return seuil;
         }
     }
