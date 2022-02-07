@@ -183,8 +183,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controller\AnomaliesController.cs" />
+    <Compile Include="Controller\CadencesController.cs" />
     <Compile Include="Controller\CouleursController.cs" />
+    <Compile Include="Controller\LumieresController.cs" />
     <Compile Include="Controller\SeuilsController.cs" />
+    <Compile Include="Controller\SonsController.cs" />
+    <Compile Include="Controller\TemperaturesController.cs" />
     <Compile Include="Data\Model\Couleur.cs" />
     <Compile Include="Data\Model\Lumiere.cs" />
     <Compile Include="Data\Model\Seuil.cs" />
