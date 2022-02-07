@@ -87,16 +87,8 @@
         <div class="AccueilPartie2">
 
             <div class="graphique">
-                <!-- <div class="titregraph">
-                    Temperatures statistique
-                </div> -->
-                <img src="IMG/diagramme.jpg" alt="">
-                <!-- <div class="infoGraph <?php echo $displayNone ?>">
-                    <div>Seuils Minimum</div>
-                    <div>2</div>
-                    <div>Seuils Maximum</div>
-                    <div>50</div>
-                </div> -->
+                <div id="graphiqueTemperature">
+                </div>
             </div>
 
             <div class="graphique">

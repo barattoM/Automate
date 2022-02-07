@@ -7,7 +7,7 @@ var reqGraphTemperatures = new XMLHttpRequest();
 window.onload = function () {
     var points = [];
     
-    var stockChart = new CanvasJS.StockChart("graphTemperature",{//id de l'element html qui doit accueillir le graph
+    var stockChart = new CanvasJS.StockChart("graphiqueTemperature",{//id de l'element html qui doit accueillir le graph
       title:{
         text:"Températures statistique"
       },  
