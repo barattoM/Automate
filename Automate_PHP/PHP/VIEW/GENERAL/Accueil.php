@@ -84,53 +84,48 @@
 
         </div>
 
-        <div class="AccueilPartie2 colonne">
-            <div>
-                <div class="graphique">
-                    <div id="graphTemperature" class="graph">
-    
-                    </div>
-                </div>
-                <div class="vMini"></div>
-                <div class="graphique colonne">
-                    <div class="titregraph">
-                        Sons statistique
-                    </div>
-                    <img src="IMG/graph2.jpg" alt="">
-                    <div class="infoGraph <?php echo $displayNone ?>">
-                        <div>Seuils Minimum</div>
-                        <div>2</div>
-                        <div>Seuils Maximum</div>
-                        <div>50</div>
-                    </div>
+        <div class="AccueilPartie2">
+
+            <div class="graphique">
+                <!-- <div class="titregraph">
+                    Temperatures statistique
+                </div> -->
+                <img src="IMG/diagramme.jpg" alt="">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
+                    <div>Seuils Minimum</div>
+                    <div>2</div>
+                    <div>Seuils Maximum</div>
+                    <div>50</div>
+                </div> -->
+            </div>
+
+            <div class="graphique">
+                <div id="graphiqueSon">
                 </div>
             </div>
-            <div>
-                <div class="graphique  colonne">
-                    <div class="titregraph">
-                        Lumieres statistique
-                    </div>
-                    <img src="IMG/graph3.png" alt="">
-                    <div class="infoGraph <?php echo $displayNone ?>">
-                        <div>Seuils Minimum</div>
-                        <div>2</div>
-                        <div>Seuils Maximum</div>
-                        <div>50</div>
-                    </div>
-                </div>
-                <div class="vMini"></div>
-                <div class="graphique  colonne">
-                    <div class="titregraph">
-                        Anomalies statistique
-                    </div>
-                    <img src="IMG/graph4.png" alt="">
-                    <div class="infoGraph <?php echo $displayNone ?>">
-                        <div>Seuils Minimum</div>
-                        <div>2</div>
-                        <div>Seuils Maximum</div>
-                        <div>50</div>
-                    </div>
-                </div>
+            <div class="graphique">
+                <!-- <div class="titregraph">
+                    Lumieres statistique
+                </div> -->
+                <img src="IMG/graph3.png" alt="">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
+                    <div>Seuils Minimum</div>
+                    <div>2</div>
+                    <div>Seuils Maximum</div>
+                    <div>50</div>
+                </div> -->
+            </div>
+            <div class="graphique">
+                <!-- <div class="titregraph">
+                    Anomalies statistique
+                </div> -->
+                <img src="IMG/graph4.png" alt="">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
+                    <div>Seuils Minimum</div>
+                    <div>2</div>
+                    <div>Seuils Maximum</div>
+                    <div>50</div>
+                </div> -->
             </div>
 
         </div>
