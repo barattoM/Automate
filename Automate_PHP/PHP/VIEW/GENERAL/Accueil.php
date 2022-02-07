@@ -87,53 +87,45 @@
         <div class="AccueilPartie2">
 
             <div class="graphique">
-                <div class="titregraph">
+                <!-- <div class="titregraph">
                     Temperatures statistique
-                </div>
+                </div> -->
                 <img src="IMG/diagramme.jpg" alt="">
-                <div class="infoGraph <?php echo $displayNone ?>">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
                     <div>50</div>
-                </div>
+                </div> -->
             </div>
 
             <div class="graphique">
-                <div class="titregraph">
-                    Sons statistique
-                </div>
-                <img src="IMG/graph2.jpg" alt="">
-                <div class="infoGraph <?php echo $displayNone ?>">
-                    <div>Seuils Minimum</div>
-                    <div>2</div>
-                    <div>Seuils Maximum</div>
-                    <div>50</div>
+                <div id="graphiqueSon">
                 </div>
             </div>
             <div class="graphique">
-                <div class="titregraph">
+                <!-- <div class="titregraph">
                     Lumieres statistique
-                </div>
+                </div> -->
                 <img src="IMG/graph3.png" alt="">
-                <div class="infoGraph <?php echo $displayNone ?>">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
                     <div>50</div>
-                </div>
+                </div> -->
             </div>
             <div class="graphique">
-                <div class="titregraph">
+                <!-- <div class="titregraph">
                     Anomalies statistique
-                </div>
+                </div> -->
                 <img src="IMG/graph4.png" alt="">
-                <div class="infoGraph <?php echo $displayNone ?>">
+                <!-- <div class="infoGraph <?php echo $displayNone ?>">
                     <div>Seuils Minimum</div>
                     <div>2</div>
                     <div>Seuils Maximum</div>
                     <div>50</div>
-                </div>
+                </div> -->
             </div>
 
         </div>

@@ -313,6 +313,7 @@ fieldset{
 	min-width: 18vw;
     max-width: 25vw;
 	align-items: center;
+    justify-content: center;
 	display: flex;
 	padding: 0.5em;
     margin: 2em; 
@@ -321,8 +322,9 @@ border-radius: 1em;
 }
 
 
-.graphique img{
-    height : 20vh; 
+.graphique div,.graphique img{
+    flex: none;
+    height : 40vh; 
     width : 20vw; 
 }
 
