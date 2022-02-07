@@ -16,7 +16,9 @@
     }
  }else if($page[1] == "Accueil" && $_SESSION['utilisateur']->getRole() > 1){
     echo '<script src="./JS/Accueil/SelectRendement.js"></script>';
+    echo '<script src="./JS/Accueil/GraphAPI.js"></script>';
  }
  echo ' <script src="./JS/script.js"></script>';
+ echo '<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>';
 echo '</body>
 </html>';

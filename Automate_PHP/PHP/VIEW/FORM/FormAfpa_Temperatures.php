@@ -26,7 +26,7 @@ echo '<div class="caseForm infoForm"><i class="fas fa-question-circle"></i></div
 echo '<div class="caseForm checkForm"><i class="fas fa-check-circle"></i></div>';
 
 echo '<label for=DateTemperature class="caseForm labelForm">'.texte("DateTemperature").'</label>';
-echo '<div class="caseForm donneeForm"><input type="text" '.$disabled .'value="'.$elm->getDateTemperature().'" name=DateTemperature pattern="'.$regex["*"].'"></div>';
+echo '<div class="caseForm donneeForm"><input type="date" '.$disabled .'value="'.$elm->getDateTemperature().'" name=DateTemperature pattern="'.$regex["*"].'"></div>';
 echo '<div class="caseForm infoForm"><i class="fas fa-question-circle"></i></div>';
 echo '<div class="caseForm checkForm"><i class="fas fa-check-circle"></i></div>';
 

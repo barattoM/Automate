@@ -303,12 +303,12 @@ fieldset{
 }
 
 .AccueilPartie2{
-        flex-wrap: wrap;
+        /* flex-wrap: wrap; */
         /* pour prendre la place dont il a besoin */
-        justify-content: space-around; 
+        /* justify-content: space-around;  */
 }
 .graphique{
-    flex-direction: column;
+    /* flex-direction: column;
 	width: calc(20% - 2rem);
 	min-width: 18vw;
     max-width: 25vw;
@@ -317,7 +317,7 @@ fieldset{
 	padding: 0.5em;
     margin: 2em; 
 	box-shadow: 3px 3px rgba(191, 194, 25, 0.637), -1em 0 .4em rgb(133, 197, 114);
-border-radius: 1em;
+border-radius: 1em; */
 }
 
 
@@ -338,17 +338,17 @@ align-self: center;
 }
 
 .graph{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     border: solid 1px black; 
-   align-items: center; 
+   align-items: center;  */
 }
 
 .graph img {
-    height: 20vh;
+    /* height: 20vh;
     width: 20vw;
     padding:0.5em; 
-    border-radius: 20%;
+    border-radius: 20%; */
 }
 /*****La touche alan*****/
 
@@ -384,4 +384,10 @@ align-self: center;
 .imggraph{
     
     background-size: cover;
+}
+
+.graph {
+    flex: none;
+    height: 35vh;
+    width: max-content;
 }
