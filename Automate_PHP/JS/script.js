@@ -14,21 +14,23 @@ window.addEventListener('touchstart', function detectTouch() {
 
 // Créé un "toggle class" en Javascrit natif (compatible partout)
 burgerMenu.addEventListener(clickedEvent, function(evt) {
-	console.log(clickedEvent);
-	// Modification du menu burger
-	if(!this.getAttribute("class")) {
-		this.setAttribute("class", "clicked");
-	} else {
-		this.removeAttribute("class");
+	if(this.classList.contains("clicked")){
+		this.classList.remove("clicked")
+	}else{
+		this.classList.add("clicked")
 	}
-	// Variante avec x.classList (ou DOMTokenList), pas 100% compatible avant IE 11...
-	// burgerMenu.classList.toggle("clicked");
 
-	// Créé l'effet pour le menu slide (compatible partout)
-	if(mainMenu.getAttribute("class") != "visible") {
-		mainMenu.setAttribute("class", "visible");
-	} else {
-		mainMenu.setAttribute("class", "invisible");
+	if(mainMenu.classList.contains("invisible")){
+		mainMenu.classList.add("visible")
+		mainMenu.classList.remove("invisible")
+
+	}else{
+		mainMenu.classList.remove("visible")
+		mainMenu.classList.add("invisible")
 	}
 }, false);
+
+
+	
+
 

@@ -25,9 +25,14 @@ setcookie("lang", $_SESSION['lang'], time()+36000, '/');
 /******Fin des langues******/
 
 $routes=[
-	"Default"=>["PHP/VIEW/FORM/","FormConnexion","Connexion",0,false],
-	"Inscription"=>["PHP/VIEW/FORM/","FormInscription","Inscription",0,false],
+   	"Default"=>["PHP/VIEW/FORM/","FormConnexion","Connexion",0,false],
+   	"Inscription"=>["PHP/VIEW/FORM/","FormInscription","Inscription",0,false],
+
 	"Accueil"=>["PHP/VIEW/GENERAL/","Accueil","Accueil",0,false],
+	"AccueilTemperatureAPI"=>["PHP/MODEL/API/Accueil/","TemperaturesAPI","API Temperatures de l'accueil", 0, true],
+
+
+	"ListeAfpa_LumiereVisuel"=>["PHP/VIEW/LISTE/","ListeAfpa_LumiereVisuel","Lumiere",0,false],
 
 	"ActionConnexion"=>["PHP/CONTROLLER/ACTION/","ActionConnexion","Action de la connexion",0,false],
 	"ActionInscription"=>["PHP/CONTROLLER/ACTION/","ActionInscription","Action de l'inscription",0,false],
@@ -59,9 +64,9 @@ $routes=[
 	"FormAfpa_Objectifs"=>["PHP/VIEW/FORM/","FormAfpa_Objectifs","Formulaire Afpa_Objectifs",0,false],
 	"ActionAfpa_Objectifs"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Objectifs","Action Afpa_Objectifs",0,false],
 
-	"ListeAfpa_Seuils"=>["PHP/VIEW/LISTE/","ListeAfpa_Seuils","Liste Afpa_Seuils",0,false],
-	"FormAfpa_Seuils"=>["PHP/VIEW/FORM/","FormAfpa_Seuils","Formulaire Afpa_Seuils",0,false],
-	"ActionAfpa_Seuils"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Seuils","Action Afpa_Seuils",0,false],
+	"ListeAfpa_Seuils"=>["PHP/VIEW/LISTE/","ListeAfpa_Seuils","Liste Seuils",0,false],
+	"FormAfpa_Seuils"=>["PHP/VIEW/FORM/","FormAfpa_Seuils","Formulaire Seuils",0,false],
+	"ActionAfpa_Seuils"=>["PHP/CONTROLLER/ACTION/","ActionAfpa_Seuils","Action Seuils",0,false],
 
 	"ListeAfpa_Sons"=>["PHP/VIEW/LISTE/","ListeAfpa_Sons","Liste Afpa_Sons",0,false],
 	"FormAfpa_Sons"=>["PHP/VIEW/FORM/","FormAfpa_Sons","Formulaire Afpa_Sons",0,false],

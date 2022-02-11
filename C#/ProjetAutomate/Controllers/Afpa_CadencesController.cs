@@ -32,6 +32,52 @@ namespace ProjetAutomate.Controllers
             return Ok(_mapper.Map<IEnumerable<Afpa_CadencesDTOOut>>(listeAfpa_Cadences));
         }
 
+        //GET api/Afpa_Cadences/ByDate/{date}
+        [HttpGet("ByDate/{date}", Name = "GetAfpa_CadencesByDate")]
+        public ActionResult<IEnumerable<Afpa_CadencesDTOOut>> GetAfpa_CadencesByDate(DateTime date)
+        {
+            IEnumerable<Afpa_Cadence> listeAfpa_Cadences = _service.GetAfpa_CadencesByDate(date);
+            return Ok(_mapper.Map<IEnumerable<Afpa_CadencesDTOOut>>(listeAfpa_Cadences));
+        }
+
+        //GET api/Afpa_Cadences/ByDate/AVG/{date}
+        [HttpGet("ByDate/AVG/{date}", Name = "GetAVGAfpa_CadencesByDate")]
+        public ActionResult<float> GetAVGAfpa_CadencesByDate(DateTime date)
+        {
+            IEnumerable<Afpa_Cadence> listeAfpa_Cadences = _service.GetAfpa_CadencesByDate(date);
+            int somme = 0;
+            foreach (Afpa_Cadence afpa_Cadence in listeAfpa_Cadences)
+            {
+                somme += afpa_Cadence.NbProduit;
+            }
+            return Ok(somme / listeAfpa_Cadences.Count());
+        }
+
+        [HttpGet("ByDate/Arret/{date}", Name = "GetArretsByDate")]
+        public ActionResult<int> GetArretsByDate(DateTime date)
+        {
+            IEnumerable<Afpa_Cadence> listeAfpa_Cadences = _service.GetAfpa_CadencesByDate(date);
+            int arret = 0;
+            bool enArret = false;
+            foreach (Afpa_Cadence afpa_Cadence in listeAfpa_Cadences)
+            {
+                // Si on a pas de production et qu'on est pas déjà en arret
+                // ça évite de compter plusieurs fois le même arrêt
+                if (afpa_Cadence.NbProduit == 0 && !enArret)
+                {
+                    arret++;
+                    enArret = true;
+                }
+                // Si on était en arret que la cadence est supérieur a 0, on est donc plus en arrêt.
+                if (afpa_Cadence.NbProduit != 0 && enArret)
+                {
+                    enArret = false;
+                }
+            }
+            return Ok(arret);
+        }
+
+
         //GET api/Afpa_Cadences/{i}
         [HttpGet("{id}", Name = "GetAfpa_CadenceById")]
         public ActionResult<Afpa_CadencesDTOOut> GetAfpa_CadenceById(int id)
@@ -80,4 +126,5 @@ namespace ProjetAutomate.Controllers
             return NoContent();
         }
     }
+
 }

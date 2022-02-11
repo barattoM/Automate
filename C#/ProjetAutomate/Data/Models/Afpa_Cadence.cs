@@ -8,7 +8,7 @@ namespace ProjetAutomate.Data.Models
     public class Afpa_Cadence
     {
         public int IdCadence { get; set; }
-        public int? NbProduit { get; set; }
-        public DateTime? DateCadence { get; set; }
+        public int NbProduit { get; set; }
+        public DateTime DateCadence { get; set; }
     }
 }

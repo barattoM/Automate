@@ -32,6 +32,14 @@ namespace ProjetAutomate.Controllers
             return Ok(_mapper.Map<IEnumerable<Afpa_SonsDTOOut>>(listeAfpa_Sons));
         }
 
+        //GET api/Afpa_Sons/ByInterval
+        [HttpGet("ByInterval", Name = "GetAfpa_SonsByInterval")]
+        public ActionResult<IEnumerable<Afpa_SonsDTOOut>> GetAfpa_SonsByDate(DateTime date1, DateTime date2)
+        {
+            IEnumerable<Afpa_Son> listeAfpa_Sons = _service.GetAfpa_SonsByInterval(date1, date2);
+            return Ok(_mapper.Map<IEnumerable<Afpa_SonsDTOOut>>(listeAfpa_Sons));
+        }
+
         //GET api/Afpa_Sons/{i}
         [HttpGet("{id}", Name = "GetAfpa_SonById")]
         public ActionResult<Afpa_SonsDTOOut> GetAfpa_SonById(int id)

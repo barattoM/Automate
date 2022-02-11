@@ -32,6 +32,38 @@ namespace ProjetAutomate.Controllers
             return Ok(_mapper.Map<IEnumerable<Afpa_AnomaliesDTOOut>>(listeAfpa_Anomalies));
         }
 
+        //GET api/Afpa_Anomalies/ByDate/{date}
+        [HttpGet("ByDate/{date}", Name = "GetAfpa_AnomaliesByDate")]
+        public ActionResult<IEnumerable<Afpa_AnomaliesDTOOut>> GetAfpa_AnomaliesByDate(DateTime date)
+        {
+            IEnumerable<Afpa_Anomalie> listeAfpa_Anomalies = _service.GetAfpa_AnomaliesByDate(date);
+            return Ok(_mapper.Map<IEnumerable<Afpa_AnomaliesDTOOut>>(listeAfpa_Anomalies));
+        }
+
+        //GET api/Afpa_Anomalies/ByType/{string}
+        [HttpGet("ByType/{string}", Name = "GetAfpa_AnomaliesByType")]
+        public ActionResult<int> GetAfpa_AnomaliesByType(string type)
+        {
+            IEnumerable<Afpa_Anomalie> listeAfpa_Anomalies = _service.GetAfpa_AnomaliesByType(type);
+            return Ok(listeAfpa_Anomalies);
+        }
+
+        //GET api/Afpa_Anomalies/ByType/Arrets/{string}
+        [HttpGet("ByType/Arrets/{string}", Name = "GetArretsAfpa_AnomaliesByType")]
+        public ActionResult<int> GetArretsAfpa_AnomaliesByType(string type)
+        {
+            IEnumerable<Afpa_Anomalie> listeAfpa_Anomalies = _service.GetAfpa_AnomaliesByType(type);
+            return Ok(listeAfpa_Anomalies.Count());
+        }
+
+        //GET api/Afpa_Anomalies/ByInterval
+        [HttpGet("ByInterval", Name = "GetAfpa_AnomaliesByInterval")]
+        public ActionResult<IEnumerable<Afpa_AnomaliesDTOOut>> GetAfpa_AnomaliesByDate(DateTime date1, DateTime date2)
+        {
+            IEnumerable<Afpa_Anomalie> listeAfpa_Anomalies = _service.GetAfpa_AnomaliesByInterval(date1, date2);
+            return Ok(_mapper.Map<IEnumerable<Afpa_AnomaliesDTOOut>>(listeAfpa_Anomalies));
+        }
+
         //GET api/Afpa_Anomalies/{i}
         [HttpGet("{id}", Name = "GetAfpa_AnomalieById")]
         public ActionResult<Afpa_AnomaliesDTOOut> GetAfpa_AnomalieById(int id)
