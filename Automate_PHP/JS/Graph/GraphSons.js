@@ -1,6 +1,8 @@
 const port=44340;
-now= new Date();
-
+debut= new Date();
+fin= new Date();
+debut.setHours(debut.getHours()-12);
+fin.setHours(debut.getHours()+24);
 
 // window.onload = function () {
   GetApiSon();
@@ -69,12 +71,12 @@ now= new Date();
       },
       navigator: {//partie basse permetant de se mouvoir dans le graph
         slider: {
-          minimum: now.setHours(now.getHours()-12),//position de l'interval initial   /!\en js les mois commencent à 0
-          maximum: now.setHours(Number(now.getHours())+12)
+          minimum: debut,//position de l'interval initial   /!\en js les mois commencent à 0
+          maximum: fin
         },
         axisX:{
-            minimum:now.setHours(now.getHours()-12),//interval max du navigator
-            maximum:now.setHours(Number(now.getHours())+12)
+            minimum:debut,//interval max du navigator
+            maximum:fin
         }
       }
     });
@@ -89,11 +91,9 @@ now= new Date();
         if (this.readyState === XMLHttpRequest.DONE) {
           if (this.status === 200) {
             let reponse=JSON.parse(this.responseText);
-            console.log(reponse);
             for(var i = 0; i < reponse.length; i++){//remplissage des données apres coup (indispensable vu qu'on va etre asychrone)
               son.push({x: new Date(reponse[i].dateSon), y: Number(reponse[i].valeurSon)});			
-            }
-            console.log(son) ;    
+            }    
             stockChart.render();
           } else {
             console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
