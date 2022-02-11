@@ -135,7 +135,9 @@ namespace Automate
             /* Gestion de l'affichage */
             //On affiche les logs sur la fenetre AVEC LES COULEURS
             if (!arret) { // On affiche pas les valeurs relevées si on est en arret
-                Log.Text += date;
+
+                Log.Inlines.Add(new Run(date) { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
+                //Log.Text += date;
                 //Changement de la couleur pour la ligne de température
                 switch (resultSeuilTemp)
                 {
@@ -187,7 +189,8 @@ namespace Automate
             //Si il y a eu une anomalie sur le son ou sur la température alors on arrete la production (si elle n'est pas déja arreté) et on envoi en base les données déja récolté avant l'anomalie
             if (resultSeuilSon != 0 || resultSeuilTemp != 0 && !arret)
             {
-                Log.Text += "*** PAUSE ***"; // Affichage de l'arret de production
+                Log.Inlines.Add(new Run("*** PAUSE ***") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0))});
+                //Log.Text += "*** PAUSE ***"; // Affichage de l'arret de production
                 arret = true; // Production arreté
                 EnvoieBase();
 
@@ -250,9 +253,12 @@ namespace Automate
                 LumieresController.PostLumiere(mesureLumiere, tabDate);
                 TemperaturesController.PostTemperature(mesureTemperature, tabDate);
                 //Affichage de l'envoie en base à l'écran
-                Log.Text += "\n*******************************" +
+                Log.Inlines.Add(new Run("\n*******************************" +
                             "\n*         Envoi en Base ...         *" +
-                            "\n*******************************\n\n";
+                            "\n*******************************\n\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
+                //Log.Text += "\n*******************************" +
+                //            "\n*         Envoi en Base ...         *" +
+                //            "\n*******************************\n\n";
             }
             /* Gestion des anomalies */
             if (tabAnomalies.Count() != 0) // Si il y a des anomalies alors on les envoies en base
@@ -431,7 +437,8 @@ namespace Automate
         private async void pause(int temps)
         {
             await Task.Delay(temps);
-            Log.Text += "FIN PAUSE\n";
+            Log.Inlines.Add(new Run("FIN PAUSE\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
+            //Log.Text += "FIN PAUSE\n";
             arret = false;
         }
     }
