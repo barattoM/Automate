@@ -46,14 +46,14 @@ namespace ProjetAutomate
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProjetAutomate", Version = "v1" });
             });
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "esquelbecq",
-                                    builder =>
-                                    {
-                                        builder.WithOrigins("https://us-esquelbecq.fr/afpa/");
-                                    });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: "esquelbecq",
+            //                        builder =>
+            //                        {
+            //                            builder.WithOrigins("https://us-esquelbecq.fr/afpa/");
+            //                        });
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +70,7 @@ namespace ProjetAutomate
 
             app.UseRouting();
 
-            app.UseCors("esquelbecq");
+            //app.UseCors("esquelbecq");
 
             app.UseAuthorization();
 
