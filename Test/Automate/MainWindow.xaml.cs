@@ -436,7 +436,7 @@ namespace Automate
         /// <param name="temps">Temps de la pause en ms</param>
         private async void pause(int temps)
         {
-            await Task.Delay(temps);
+            await Task.Delay(3000);
             Log.Inlines.Add(new Run("FIN PAUSE\n") { Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(0, 0, 0)) });
             //Log.Text += "FIN PAUSE\n";
             arret = false;

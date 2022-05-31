@@ -28,7 +28,7 @@ namespace ProjetAutomate
                 {
                     webBuilder.UseStartup<Startup>();
                     // permet d'appeler l'API depuis un autre poste
-                    webBuilder.UseUrls("http://10.115.41.59:5001");
+                    webBuilder.UseUrls("http://192.168.1.19:5001");
                 });
     }
     
